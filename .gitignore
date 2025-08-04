@@ -43,7 +43,7 @@ dist-ssr
 !/public/assets/*/code/
 !/public/assets/*/text/
 
-# Large media files anywhere
+# Large media files anywhere (be more aggressive)
 *.mp3
 *.wav
 *.webm
@@ -57,17 +57,15 @@ dist-ssr
 *.jpeg
 *.webp
 *.gif
-*.svg
-*.ico
 
-# But keep small essential images (logos, icons)
-!**/gamelogo.png
-!**/logo.png
-!**/*_logo*.png
-!**/favicon.ico
-!**/placeholder.svg
+# SVG and ICO exceptions (usually small)
 !**/react.svg
 !**/vite.svg
+!**/placeholder.svg
+
+# All other icons and images - exclude them
+*.svg
+*.ico
 
 # Large data files
 analytics-*.json
