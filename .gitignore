@@ -1,0 +1,85 @@
+# Dependencies
+node_modules
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Build outputs
+dist
+dist-ssr
+*.local
+
+# Environment files
+.env
+.env.local
+.env.production
+.env.development.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# ===== CHAOS ENGINE SPECIFIC =====
+# Asset directories (2.5GB - too large for git)
+/public/assets/*/images/
+/public/assets/*/audio/
+/public/assets/*/video/
+/public/assets/*/models/
+/public/assets/*/fonts/
+
+# Keep essential structure files
+!/public/assets/chaos-manifest.json
+!/public/assets/*/data/
+!/public/assets/*/code/
+!/public/assets/*/text/
+
+# Large media files anywhere
+*.mp3
+*.wav
+*.webm
+*.ogg
+*.m4a
+*.mp4
+*.mov
+*.avi
+*.png
+*.jpg
+*.jpeg
+*.webp
+*.gif
+*.svg
+*.ico
+
+# But keep small essential images (logos, icons)
+!**/gamelogo.png
+!**/logo.png
+!**/*_logo*.png
+!**/favicon.ico
+!**/placeholder.svg
+!**/react.svg
+!**/vite.svg
+
+# Large data files
+analytics-*.json
+**/package-lock.json
+**/node_modules/
+
+# Development files
+*.log
+server.log
+localhost-*.log
+ngrok.log
+localtunnel.log
+
+# Test files
+test-*.html
