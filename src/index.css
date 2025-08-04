@@ -1,0 +1,36 @@
+/* The Orphanarium - Global Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: monospace, system-ui, -apple-system, sans-serif;
+  background: #000;
+  color: #fff;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+}
+
+/* Remove focus outlines for better visual experience */
+button:focus {
+  outline: none;
+}
+
+/* Prevent text selection in the mutation engine */
+.orphanarium-app {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
