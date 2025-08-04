@@ -39,9 +39,16 @@ dist-ssr
 
 # Keep essential structure files
 !/public/assets/chaos-manifest.json
-!/public/assets/*/data/
-!/public/assets/*/code/
-!/public/assets/*/text/
+!/public/assets/*/data/project.json
+!/public/assets/*/data/package.json
+!/public/assets/*/data/settings.local.json
+!/public/assets/*/text/README.md
+!/public/assets/*/text/README.txt
+
+# Exclude all original project code and data (too much)
+/public/assets/*/code/
+/public/assets/*/data/
+/public/assets/*/text/
 
 # Large media files anywhere (be more aggressive)
 *.mp3
