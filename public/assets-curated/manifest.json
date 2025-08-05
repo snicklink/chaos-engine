@@ -1,0 +1,506 @@
+{
+  "version": "1.0.0",
+  "generated": "2025-08-05T11:48:36.922Z",
+  "stats": {
+    "totalAssets": 59,
+    "totalSize": 48848282,
+    "byType": {
+      "images": {
+        "count": 35,
+        "size": 507448
+      },
+      "audio": {
+        "count": 16,
+        "size": 17741619
+      },
+      "data": {
+        "count": 2,
+        "size": 23771
+      },
+      "video": {
+        "count": 6,
+        "size": 30575444
+      }
+    },
+    "byProject": {
+      "neo-neukoelln": {
+        "count": 19,
+        "size": 1109734
+      },
+      "rosebud": {
+        "count": 5,
+        "size": 5131741
+      },
+      "vibegame-site": {
+        "count": 2,
+        "size": 113878
+      },
+      "derpaket": {
+        "count": 2,
+        "size": 38212
+      },
+      "ikigaii": {
+        "count": 1,
+        "size": 31546
+      },
+      "vibetales": {
+        "count": 11,
+        "size": 41492407
+      },
+      "miami-voice": {
+        "count": 11,
+        "size": 212066
+      },
+      "blobtv": {
+        "count": 4,
+        "size": 661967
+      },
+      "royal-rumble": {
+        "count": 2,
+        "size": 32960
+      }
+    },
+    "totalSizeMB": "46.59"
+  },
+  "essentials": [
+    {
+      "original": "/assets/neo-neukoelln/images/doener_kebap.webp",
+      "curated": "/assets-curated/essentials/neo-neukoelln/images/doener_kebap.webp",
+      "size": 3806,
+      "type": "images"
+    },
+    {
+      "original": "/assets/neo-neukoelln/images/hipster.png",
+      "curated": "/assets-curated/essentials/neo-neukoelln/images/hipster.webp",
+      "size": 17494,
+      "type": "images"
+    },
+    {
+      "original": "/assets/neo-neukoelln/images/techno_girl.png",
+      "curated": "/assets-curated/essentials/neo-neukoelln/images/techno_girl.webp",
+      "size": 18734,
+      "type": "images"
+    },
+    {
+      "original": "/assets/neo-neukoelln/images/bvg_ticket.webp",
+      "curated": "/assets-curated/essentials/neo-neukoelln/images/bvg_ticket.webp",
+      "size": 1586,
+      "type": "images"
+    },
+    {
+      "original": "/assets/neo-neukoelln/images/aggressive_pigeon.png",
+      "curated": "/assets-curated/essentials/neo-neukoelln/images/aggressive_pigeon.webp",
+      "size": 3192,
+      "type": "images"
+    },
+    {
+      "original": "/assets/neo-neukoelln/images/giant_rat.png",
+      "curated": "/assets-curated/essentials/neo-neukoelln/images/giant_rat.webp",
+      "size": 3564,
+      "type": "images"
+    },
+    {
+      "original": "/assets/neo-neukoelln/images/mutumbo.png",
+      "curated": "/assets-curated/essentials/neo-neukoelln/images/mutumbo.webp",
+      "size": 11542,
+      "type": "images"
+    },
+    {
+      "original": "/assets/neo-neukoelln/images/doener_dealer.png",
+      "curated": "/assets-curated/essentials/neo-neukoelln/images/doener_dealer.webp",
+      "size": 98,
+      "type": "images"
+    },
+    {
+      "original": "/assets/rosebud/images/snicklink_logo copy.png",
+      "curated": "/assets-curated/essentials/rosebud/images/snicklink_logo copy.webp",
+      "size": 43482,
+      "type": "images"
+    },
+    {
+      "original": "/assets/vibegame-site/images/simwilly.jpg",
+      "curated": "/assets-curated/essentials/vibegame-site/images/simwilly.webp",
+      "size": 102100,
+      "type": "images"
+    },
+    {
+      "original": "/assets/derpaket/images/DerPaket_logo.png",
+      "curated": "/assets-curated/essentials/derpaket/images/DerPaket_logo.webp",
+      "size": 13298,
+      "type": "images"
+    },
+    {
+      "original": "/assets/ikigaii/images/logo.png",
+      "curated": "/assets-curated/essentials/ikigaii/images/logo.webp",
+      "size": 31546,
+      "type": "images"
+    },
+    {
+      "original": "/assets/vibetales/images/blobtv_logo.png",
+      "curated": "/assets-curated/essentials/vibetales/images/blobtv_logo.webp",
+      "size": 9586,
+      "type": "images"
+    },
+    {
+      "original": "/assets/vibegame-site/images/snick_vibe_logo.png",
+      "curated": "/assets-curated/essentials/vibegame-site/images/snick_vibe_logo.webp",
+      "size": 11778,
+      "type": "images"
+    },
+    {
+      "original": "/assets/miami-voice/images/sun.svg",
+      "curated": "/assets-curated/essentials/miami-voice/images/sun.svg",
+      "size": 24780,
+      "type": "images"
+    },
+    {
+      "original": "/assets/miami-voice/images/palm.png",
+      "curated": "/assets-curated/essentials/miami-voice/images/palm.webp",
+      "size": 4018,
+      "type": "images"
+    },
+    {
+      "original": "/assets/miami-voice/images/cocktail.png",
+      "curated": "/assets-curated/essentials/miami-voice/images/cocktail.webp",
+      "size": 2864,
+      "type": "images"
+    },
+    {
+      "original": "/assets/miami-voice/images/chrome.png",
+      "curated": "/assets-curated/essentials/miami-voice/images/chrome.webp",
+      "size": 2580,
+      "type": "images"
+    },
+    {
+      "original": "/assets/miami-voice/images/tico.png",
+      "curated": "/assets-curated/essentials/miami-voice/images/tico.webp",
+      "size": 708,
+      "type": "images"
+    },
+    {
+      "original": "/assets/miami-voice/images/heli.png",
+      "curated": "/assets-curated/essentials/miami-voice/images/heli.webp",
+      "size": 7778,
+      "type": "images"
+    },
+    {
+      "original": "/assets/derpaket/images/snicklink-logo.png",
+      "curated": "/assets-curated/essentials/derpaket/images/snicklink-logo.webp",
+      "size": 24914,
+      "type": "images"
+    },
+    {
+      "original": "/assets/blobtv/images/blobtv_logo.png",
+      "curated": "/assets-curated/essentials/blobtv/images/blobtv_logo.webp",
+      "size": 20246,
+      "type": "images"
+    },
+    {
+      "original": "/assets/miami-voice/images/logo.png",
+      "curated": "/assets-curated/essentials/miami-voice/images/logo.webp",
+      "size": 20006,
+      "type": "images"
+    },
+    {
+      "original": "/assets/neo-neukoelln/images/gamelogo.png",
+      "curated": "/assets-curated/essentials/neo-neukoelln/images/gamelogo.webp",
+      "size": 24464,
+      "type": "images"
+    },
+    {
+      "original": "/assets/neo-neukoelln/images/doenerbude.webp",
+      "curated": "/assets-curated/essentials/neo-neukoelln/images/doenerbude.webp",
+      "size": 2610,
+      "type": "images"
+    },
+    {
+      "original": "/assets/neo-neukoelln/images/currywurst.webp",
+      "curated": "/assets-curated/essentials/neo-neukoelln/images/currywurst.webp",
+      "size": 3806,
+      "type": "images"
+    },
+    {
+      "original": "/assets/neo-neukoelln/images/spaeti.webp",
+      "curated": "/assets-curated/essentials/neo-neukoelln/images/spaeti.webp",
+      "size": 3112,
+      "type": "images"
+    },
+    {
+      "original": "/assets/neo-neukoelln/images/street_artist.png",
+      "curated": "/assets-curated/essentials/neo-neukoelln/images/street_artist.webp",
+      "size": 98,
+      "type": "images"
+    },
+    {
+      "original": "/assets/neo-neukoelln/images/sidewalk.webp",
+      "curated": "/assets-curated/essentials/neo-neukoelln/images/sidewalk.webp",
+      "size": 160,
+      "type": "images"
+    },
+    {
+      "original": "/assets/neo-neukoelln/images/ubahn1.webp",
+      "curated": "/assets-curated/essentials/neo-neukoelln/images/ubahn1.webp",
+      "size": 2020,
+      "type": "images"
+    },
+    {
+      "original": "/assets/neo-neukoelln/images/brandenburg_gate.webp",
+      "curated": "/assets-curated/essentials/neo-neukoelln/images/brandenburg_gate.webp",
+      "size": 6832,
+      "type": "images"
+    },
+    {
+      "original": "/assets/neo-neukoelln/images/shisha_lounge.webp",
+      "curated": "/assets-curated/essentials/neo-neukoelln/images/shisha_lounge.webp",
+      "size": 2520,
+      "type": "images"
+    },
+    {
+      "original": "/assets/rosebud/audio/Die Willy Theme.mp3",
+      "curated": "/assets-curated/essentials/rosebud/audio/Die Willy Theme.mp3",
+      "size": 3303454,
+      "type": "audio"
+    },
+    {
+      "original": "/assets/rosebud/audio/Willy im Hyperflow.mp3",
+      "curated": "/assets-curated/essentials/rosebud/audio/Willy im Hyperflow.mp3",
+      "size": 1638430,
+      "type": "audio"
+    },
+    {
+      "original": "/assets/blobtv/images/SimWilly_sm.png",
+      "curated": "/assets-curated/essentials/blobtv/images/SimWilly_sm.webp",
+      "size": 4224,
+      "type": "images"
+    },
+    {
+      "original": "/assets/miami-voice/images/skyline.png",
+      "curated": "/assets-curated/essentials/miami-voice/images/skyline.webp",
+      "size": 3534,
+      "type": "images"
+    },
+    {
+      "original": "/assets/blobtv/images/offline.jpg",
+      "curated": "/assets-curated/essentials/blobtv/images/offline.webp",
+      "size": 74368,
+      "type": "images"
+    },
+    {
+      "original": "/assets/chaos-manifest.json",
+      "curated": "/assets-curated/essentials/chaos-manifest.json",
+      "size": 23567,
+      "type": "data"
+    },
+    {
+      "original": "/assets/vibetales/video/Der Kanzler Simulator 👾.mp4",
+      "curated": "/assets-curated/essentials/vibetales/video/Der Kanzler Simulator 👾.mp4",
+      "size": 5038522,
+      "type": "video",
+      "mutations": [
+        {
+          "path": "/assets-curated/essentials/vibetales/video/Der Kanzler Simulator 👾_2x.mp4",
+          "mutation": "speed_chaos",
+          "size": 4369352
+        }
+      ],
+      "totalVariations": 2
+    },
+    {
+      "original": "/assets/vibetales/video/mixkit-abstract-video-of-a-liquid-with-dark-ink-flowing-44818-hd-ready.mp4",
+      "curated": "/assets-curated/essentials/vibetales/video/mixkit-abstract-video-of-a-liquid-with-dark-ink-flowing-44818-hd-ready.mp4",
+      "size": 6557705,
+      "type": "video",
+      "mutations": [
+        {
+          "path": "/assets-curated/essentials/vibetales/video/mixkit-abstract-video-of-a-liquid-with-dark-ink-flowing-44818-hd-ready_colorshift.mp4",
+          "mutation": "color_chaos",
+          "size": 4253941
+        },
+        {
+          "path": "/assets-curated/essentials/vibetales/video/mixkit-abstract-video-of-a-liquid-with-dark-ink-flowing-44818-hd-ready_inverted.mp4",
+          "mutation": "invert",
+          "size": 4256641
+        }
+      ],
+      "totalVariations": 3
+    },
+    {
+      "original": "/assets/vibetales/video/mixkit-colorful-dance-of-a-young-dancer-51277-hd-ready.mp4",
+      "curated": "/assets-curated/essentials/vibetales/video/mixkit-colorful-dance-of-a-young-dancer-51277-hd-ready.mp4",
+      "size": 8884525,
+      "type": "video",
+      "mutations": [
+        {
+          "path": "/assets-curated/essentials/vibetales/video/mixkit-colorful-dance-of-a-young-dancer-51277-hd-ready_mirror.mp4",
+          "mutation": "mirror_chaos",
+          "size": 4070268
+        }
+      ],
+      "totalVariations": 2
+    },
+    {
+      "original": "/assets/vibetales/video/GehWeidaRoboter2.mp4",
+      "curated": "/assets-curated/essentials/vibetales/video/GehWeidaRoboter2.mp4",
+      "size": 6706154,
+      "type": "video",
+      "mutations": [
+        {
+          "path": "/assets-curated/essentials/vibetales/video/GehWeidaRoboter2_mirror.mp4",
+          "mutation": "mirror_chaos",
+          "size": 3445559
+        }
+      ],
+      "totalVariations": 2
+    },
+    {
+      "original": "/assets/vibetales/video/BrentWilly_16_9.mp4",
+      "curated": "/assets-curated/essentials/vibetales/video/BrentWilly_16_9.mp4",
+      "size": 2825409,
+      "type": "video",
+      "mutations": [
+        {
+          "path": "/assets-curated/essentials/vibetales/video/BrentWilly_16_9_2x.mp4",
+          "mutation": "speed_chaos",
+          "size": 424378
+        }
+      ],
+      "totalVariations": 2
+    },
+    {
+      "original": "/assets/vibetales/audio/marco_states.webm",
+      "curated": "/assets-curated/essentials/vibetales/audio/marco_states.webm",
+      "size": 3719881,
+      "type": "audio",
+      "mutations": [
+        {
+          "path": "/assets-curated/essentials/vibetales/audio/marco_states_inverted.mp4",
+          "mutation": "invert",
+          "size": 186992
+        }
+      ],
+      "totalVariations": 2
+    },
+    {
+      "original": "/assets/vibetales/audio/blobby_states.webm",
+      "curated": "/assets-curated/essentials/vibetales/audio/blobby_states.webm",
+      "size": 3749042,
+      "type": "audio",
+      "mutations": [
+        {
+          "path": "/assets-curated/essentials/vibetales/audio/blobby_states_inverted.mp4",
+          "mutation": "invert",
+          "size": 1851180
+        },
+        {
+          "path": "/assets-curated/essentials/vibetales/audio/blobby_states_glitch.mp4",
+          "mutation": "glitch_chaos",
+          "size": 43101806
+        }
+      ],
+      "totalVariations": 3
+    },
+    {
+      "original": "/assets/vibetales/audio/beat1.mp3",
+      "curated": "/assets-curated/essentials/vibetales/audio/beat1.mp3",
+      "size": 339300,
+      "type": "audio"
+    },
+    {
+      "original": "/assets/vibetales/audio/jingle1.mp3",
+      "curated": "/assets-curated/essentials/vibetales/audio/jingle1.mp3",
+      "size": 82673,
+      "type": "audio"
+    },
+    {
+      "original": "/assets/vibetales/audio/electro.mp3",
+      "curated": "/assets-curated/essentials/vibetales/audio/electro.mp3",
+      "size": 3579610,
+      "type": "audio"
+    },
+    {
+      "original": "/assets/neo-neukoelln/audio/techno.mp3",
+      "curated": "/assets-curated/essentials/neo-neukoelln/audio/techno.mp3",
+      "size": 364672,
+      "type": "audio"
+    },
+    {
+      "original": "/assets/neo-neukoelln/audio/gametheme.mp3",
+      "curated": "/assets-curated/essentials/neo-neukoelln/audio/gametheme.mp3",
+      "size": 639424,
+      "type": "audio"
+    },
+    {
+      "original": "/assets/miami-voice/audio/miami.mp3",
+      "curated": "/assets-curated/essentials/miami-voice/audio/miami.mp3",
+      "size": 123058,
+      "type": "audio"
+    },
+    {
+      "original": "/assets/miami-voice/audio/disco.mp3",
+      "curated": "/assets-curated/essentials/miami-voice/audio/disco.mp3",
+      "size": 10494,
+      "type": "audio"
+    },
+    {
+      "original": "/assets/miami-voice/audio/weee.mp3",
+      "curated": "/assets-curated/essentials/miami-voice/audio/weee.mp3",
+      "size": 12246,
+      "type": "audio"
+    },
+    {
+      "original": "/assets/rosebud/audio/blips.mp3",
+      "curated": "/assets-curated/essentials/rosebud/audio/blips.mp3",
+      "size": 48946,
+      "type": "audio"
+    },
+    {
+      "original": "/assets/rosebud/audio/computer.mp3",
+      "curated": "/assets-curated/essentials/rosebud/audio/computer.mp3",
+      "size": 97429,
+      "type": "audio"
+    },
+    {
+      "original": "/assets/royal-rumble/audio/punch.mp3",
+      "curated": "/assets-curated/essentials/royal-rumble/audio/punch.mp3",
+      "size": 13888,
+      "type": "audio"
+    },
+    {
+      "original": "/assets/royal-rumble/audio/kick.mp3",
+      "curated": "/assets-curated/essentials/royal-rumble/audio/kick.mp3",
+      "size": 19072,
+      "type": "audio"
+    },
+    {
+      "original": "/assets/blobtv/video/blobgpt-animation.mp4",
+      "curated": "/assets-curated/essentials/blobtv/video/blobgpt-animation.mp4",
+      "size": 563129,
+      "type": "video",
+      "mutations": [
+        {
+          "path": "/assets-curated/essentials/blobtv/video/blobgpt-animation_colorshift.mp4",
+          "mutation": "color_chaos",
+          "size": 56493
+        },
+        {
+          "path": "/assets-curated/essentials/blobtv/video/blobgpt-animation_inverted.mp4",
+          "mutation": "invert",
+          "size": 50114
+        }
+      ],
+      "totalVariations": 3
+    }
+  ],
+  "manualPicks": {
+    "timestamp": "2025-08-05T11:48:36.921Z",
+    "assets": [
+      {
+        "name": "manifest.json",
+        "path": "manifest.json",
+        "type": "data",
+        "size": 204,
+        "priority": "high"
+      }
+    ]
+  }
+}

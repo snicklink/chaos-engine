@@ -14,6 +14,17 @@ const RealAssetChaos = ({ assetLibrary, phase, intensity }) => {
     if (!assetLibrary) return;
     
     const preloadAssets = async () => {
+      // Check if already cached from GlobalPreloader
+      if (preloader.current.isMutationCached('real-asset-chaos')) {
+        console.log('⚡ INSTANT LOAD - assets already cached!');
+        setLoadingProgress(100);
+        setIsPreloaded(true);
+        
+        const assetSet = await preloader.current.preloadMutationAssets('real-asset-chaos', assetLibrary);
+        generateChaosFromPreloaded(assetSet);
+        return;
+      }
+      
       setLoadingProgress(10);
       
       try {

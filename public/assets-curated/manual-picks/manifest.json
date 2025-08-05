@@ -1,0 +1,12 @@
+{
+  "timestamp": "2025-08-05T11:48:36.921Z",
+  "assets": [
+    {
+      "name": "manifest.json",
+      "path": "manifest.json",
+      "type": "data",
+      "size": 204,
+      "priority": "high"
+    }
+  ]
+}

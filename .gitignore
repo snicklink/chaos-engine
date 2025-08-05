@@ -30,12 +30,12 @@ dist-ssr
 *.sw?
 
 # ===== CHAOS ENGINE SPECIFIC =====
-# Asset directories (2.5GB - too large for git)
-/public/assets/*/images/
-/public/assets/*/audio/
-/public/assets/*/video/
-/public/assets/*/models/
-/public/assets/*/fonts/
+# Original asset directories (2.5GB - too large for git)
+/public/assets/
+
+# Keep curated assets (40-50MB)
+!/public/assets-curated/
+!/public/assets-curated/**
 
 # Keep essential structure files
 !/public/assets/chaos-manifest.json

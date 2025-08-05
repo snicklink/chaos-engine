@@ -1,8 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
-import AssetLibrary from './AssetLibrary';
+import AssetLibrary from './AssetLibraryWrapper'; // Use wrapper for curated/full switching
 import PhaseController from './PhaseController';
 import RemixAlgorithms from './RemixAlgorithms';
 import StyleBox from '../components/StyleBox';
+import GlobalPreloader from './GlobalPreloader';
+import AudioManager from './AudioManager';
 
 const MutationEngine = () => {
   const [currentMutation, setCurrentMutation] = useState(null);
@@ -11,9 +13,11 @@ const MutationEngine = () => {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [assets, setAssets] = useState({});
   const [assetLibrary, setAssetLibrary] = useState(null);
+  const [preloadComplete, setPreloadComplete] = useState(false);
   
   const engineRef = useRef(null);
   const phaseController = useRef(null);
+  const audioInitialized = useRef(false);
   
   useEffect(() => {
     // Initialize the engine
@@ -33,12 +37,8 @@ const MutationEngine = () => {
         maxDuration: 120000 // 120 seconds
       });
       
-      // Start the first mutation
-      triggerNewMutation();
+      // Don't start yet - wait for preload
       setIsLoading(false);
-      
-      // Start phase controller
-      phaseController.current.start();
     };
     
     initEngine();
@@ -47,11 +47,16 @@ const MutationEngine = () => {
       if (phaseController.current) {
         phaseController.current.stop();
       }
+      AudioManager.destroy();
     };
   }, []);
   
   const handlePhaseChange = (newPhase) => {
     setPhase(newPhase);
+    
+    // Update audio manager with new phase
+    const intensity = phaseController.current?.getIntensity() || 0;
+    AudioManager.updatePhase(newPhase, intensity);
     
     // Trigger different behaviors based on phase
     switch(newPhase) {
@@ -93,18 +98,52 @@ const MutationEngine = () => {
     triggerNewMutation();
   };
   
+  const handlePreloadComplete = () => {
+    setPreloadComplete(true);
+    // Start the first mutation
+    triggerNewMutation();
+    // Start phase controller
+    if (phaseController.current) {
+      phaseController.current.start();
+    }
+  };
+
   if (isLoading) {
     return (
       <div className="loading-screen">
         <div className="loading-text">
-          GATHERING ORPHAN FRAGMENTS...
+          INITIALIZING CHAOS ENGINE...
         </div>
       </div>
     );
   }
   
+  if (!preloadComplete && assetLibrary) {
+    return <GlobalPreloader assetLibrary={assetLibrary} onComplete={handlePreloadComplete} />;
+  }
+  
+  // Initialize audio on first user interaction
+  const handleUserInteraction = async () => {
+    console.log('👆 User interaction detected!');
+    if (!audioInitialized.current) {
+      console.log('🎵 Initializing AudioManager on user interaction...');
+      try {
+        await AudioManager.init();
+        audioInitialized.current = true;
+        // Update with current phase
+        const currentIntensity = phaseController.current?.getIntensity() || 0;
+        console.log('🎶 Setting initial phase:', phase, 'intensity:', currentIntensity);
+        AudioManager.updatePhase(phase, currentIntensity);
+      } catch (error) {
+        console.error('❌ AudioManager initialization failed:', error);
+      }
+    } else {
+      console.log('🔊 Audio already initialized');
+    }
+  };
+
   return (
-    <div className="mutation-engine" ref={engineRef}>
+    <div className="mutation-engine" ref={engineRef} onClick={handleUserInteraction}>
       <div className={`mutation-container phase-${phase} ${isTransitioning ? 'transitioning' : ''}`}>
         {isTransitioning ? (
           <div className="transition-overlay">

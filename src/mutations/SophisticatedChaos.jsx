@@ -1,6 +1,9 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import CreativeDirectorAI from '../core/CreativeDirectorAI';
 import AssetPreloader from '../core/AssetPreloader';
+import BackgroundGenerator from '../core/BackgroundGenerator';
+import MotionSystem from '../core/MotionSystem';
+import FontLoader from '../core/FontLoader';
 import './mutations.css';
 
 const SophisticatedChaos = ({ assetLibrary, phase, intensity }) => {
@@ -12,6 +15,9 @@ const SophisticatedChaos = ({ assetLibrary, phase, intensity }) => {
   const creativeDirector = useRef(new CreativeDirectorAI());
   const sceneTimer = useRef(null);
   const preloader = useRef(new AssetPreloader());
+  const backgroundGenerator = useRef(new BackgroundGenerator());
+  const motionSystem = useRef(new MotionSystem());
+  const fontLoader = useRef(new FontLoader());
   
   // Video element refs for game reconstructions
   const videoRefs = useRef({});
@@ -22,7 +28,11 @@ const SophisticatedChaos = ({ assetLibrary, phase, intensity }) => {
   useEffect(() => {
     // Preload assets for sophisticated chaos
     if (assetLibrary) {
-      preloader.current.preloadMutationAssets('sophisticated-chaos', assetLibrary);
+      if (preloader.current.isMutationCached('sophisticated-chaos')) {
+        console.log('⚡ SOPHISTICATED CHAOS - INSTANT LOAD!');
+      } else {
+        preloader.current.preloadMutationAssets('sophisticated-chaos', assetLibrary);
+      }
     }
     
     const handleMouseMove = (e) => {
@@ -90,13 +100,14 @@ const SophisticatedChaos = ({ assetLibrary, phase, intensity }) => {
     const elements = [];
     const assetCount = Math.floor(Math.random() * 3) + 1;
     
-    // Clean, sophisticated background
+    // Use BackgroundGenerator for sophisticated backgrounds
+    const bgStyle = backgroundGenerator.current.generateBackground(phase, intensity * 0.3, assetLibrary);
     setBackgroundStyle({
-      background: 'linear-gradient(180deg, #ffffff 0%, #f8f8f8 100%)',
+      ...bgStyle,
       transition: 'all 2s cubic-bezier(0.4, 0, 0.2, 1)'
     });
     
-    // Carefully placed assets
+    // Carefully placed assets with perpetual motion
     for (let i = 0; i < assetCount; i++) {
       const asset = assetLibrary?.getRandomAssetWithPath('images');
       if (asset) {
@@ -121,7 +132,8 @@ const SophisticatedChaos = ({ assetLibrary, phase, intensity }) => {
       }
     }
     
-    // Add subtle text element
+    // Add subtle text element with dynamic font
+    const fontStyle = fontLoader.current.getRandomStyle('calm', intensity);
     elements.push({
       id: `text-${Date.now()}`,
       type: 'text',
@@ -131,12 +143,11 @@ const SophisticatedChaos = ({ assetLibrary, phase, intensity }) => {
         bottom: '10%',
         left: '50%',
         transform: 'translateX(-50%)',
-        fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',
-        fontSize: '14px',
+        ...fontStyle,
         color: '#333',
-        letterSpacing: '2px',
         opacity: 0.7
-      }
+      },
+      motion: { type: 'breathe', intensity: 0.3 }
     });
     
     setSceneElements(elements);
@@ -145,24 +156,12 @@ const SophisticatedChaos = ({ assetLibrary, phase, intensity }) => {
   const createDataVisualization = (decision) => {
     const elements = [];
     
+    // Use BackgroundGenerator for data viz backgrounds
+    const bgStyle = backgroundGenerator.current.generateBackground('build', intensity * 0.6, assetLibrary);
     setBackgroundStyle({
-      background: '#0a0a0a',
-      backgroundImage: `
-        repeating-linear-gradient(
-          0deg,
-          transparent,
-          transparent 2px,
-          rgba(0, 255, 255, 0.03) 2px,
-          rgba(0, 255, 255, 0.03) 4px
-        ),
-        repeating-linear-gradient(
-          90deg,
-          transparent,
-          transparent 2px,
-          rgba(0, 255, 255, 0.03) 2px,
-          rgba(0, 255, 255, 0.03) 4px
-        )
-      `
+      ...bgStyle,
+      filter: `${bgStyle.filter || ''} saturate(0.8)`,
+      mixBlendMode: 'normal'
     });
     
     // Create data nodes from assets
@@ -194,7 +193,8 @@ const SophisticatedChaos = ({ assetLibrary, phase, intensity }) => {
             transform: 'translate(-50%, -50%)',
             transition: 'all 0.3s ease'
           },
-          animation: 'pulse-data'
+          animation: 'pulse-data',
+          motion: { type: 'orbit', intensity: 0.3 + intensity * 0.2 }
         });
       }
     }
@@ -226,10 +226,11 @@ const SophisticatedChaos = ({ assetLibrary, phase, intensity }) => {
   const createGameCinematic = (decision) => {
     const elements = [];
     
-    // Cinematic letterbox background
+    // Dynamic cinematic background
+    const bgStyle = backgroundGenerator.current.generateBackground('build', intensity * 0.4, assetLibrary);
     setBackgroundStyle({
-      background: '#000',
-      position: 'relative'
+      ...bgStyle,
+      filter: 'brightness(0.3) contrast(1.5)'
     });
     
     // Add letterbox bars
@@ -297,12 +298,14 @@ const SophisticatedChaos = ({ assetLibrary, phase, intensity }) => {
             objectFit: 'contain',
             filter: 'drop-shadow(0 10px 20px rgba(0,0,0,0.5))',
             animation: `character-idle-${i} 2s ease-in-out infinite`
-          }
+          },
+          motion: { type: 'sway', intensity: 0.5 + i * 0.1 }
         });
       });
     }
     
-    // Cinematic UI overlay
+    // Cinematic UI overlay with dynamic font
+    const fontStyle = fontLoader.current.getRandomStyle('build', intensity);
     elements.push({
       id: 'cinematic-ui',
       type: 'text',
@@ -312,12 +315,13 @@ const SophisticatedChaos = ({ assetLibrary, phase, intensity }) => {
         bottom: '18%',
         left: '50%',
         transform: 'translateX(-50%)',
-        fontFamily: 'monospace',
-        fontSize: '16px',
+        ...fontStyle,
+        fontSize: '24px',
         color: '#fff',
         textShadow: '2px 2px 4px rgba(0,0,0,0.8)',
         animation: 'blink 2s ease-in-out infinite'
-      }
+      },
+      motion: { type: 'pulse', intensity: 0.3 }
     });
     
     setSceneElements(elements);
@@ -327,8 +331,10 @@ const SophisticatedChaos = ({ assetLibrary, phase, intensity }) => {
     const elements = [];
     const assetCount = 100; // MAXIMUM CHAOS
     
+    // Chaotic background for tsunami
+    const bgStyle = backgroundGenerator.current.generateBackground('chaos', intensity, assetLibrary);
     setBackgroundStyle({
-      background: 'black',
+      ...bgStyle,
       overflow: 'hidden'
     });
     
@@ -360,7 +366,8 @@ const SophisticatedChaos = ({ assetLibrary, phase, intensity }) => {
               mixBlendMode: 'screen',
               animation: `tsunami-wave ${2 + wave * 0.5}s ease-out forwards`,
               animationDelay: `${wave * 0.2}s`
-            }
+            },
+            motion: { type: 'spin', intensity: intensity * (wave + 1) * 0.2 }
           });
         }
       }
@@ -372,18 +379,11 @@ const SophisticatedChaos = ({ assetLibrary, phase, intensity }) => {
   const createDigitalBrutalism = (decision) => {
     const elements = [];
     
-    // Harsh concrete background
+    // Harsh geometric background
+    const bgStyle = backgroundGenerator.current.generateBackground('build', intensity * 0.7, assetLibrary);
     setBackgroundStyle({
-      background: '#222',
-      backgroundImage: `
-        repeating-linear-gradient(
-          45deg,
-          #222,
-          #222 10px,
-          #333 10px,
-          #333 20px
-        )
-      `
+      ...bgStyle,
+      filter: 'contrast(2) grayscale(0.8)'
     });
     
     // Brutal blocks with assets
@@ -423,7 +423,8 @@ const SophisticatedChaos = ({ assetLibrary, phase, intensity }) => {
       }
     }
     
-    // Harsh typography
+    // Harsh typography with super large font
+    const fontStyle = fontLoader.current.getSuperLargeStyle('DIGITAL BRUTALISM');
     elements.push({
       id: 'brutal-text',
       type: 'text',
@@ -432,14 +433,12 @@ const SophisticatedChaos = ({ assetLibrary, phase, intensity }) => {
         position: 'absolute',
         top: '10%',
         left: '10%',
-        fontSize: '80px',
-        fontWeight: '900',
-        fontFamily: 'Impact, sans-serif',
+        ...fontStyle,
         color: '#fff',
         textShadow: '5px 5px 0 #000',
-        transform: 'skew(-10deg)',
-        letterSpacing: '-5px'
-      }
+        transform: 'skew(-10deg)'
+      },
+      motion: { type: 'shake', intensity: 0.3 }
     });
     
     setSceneElements(elements);
@@ -448,18 +447,12 @@ const SophisticatedChaos = ({ assetLibrary, phase, intensity }) => {
   const createGlitchReality = (decision) => {
     const elements = [];
     
-    // Corrupted video background
+    // Glitched dynamic background
+    const bgStyle = backgroundGenerator.current.generateBackground('chaos', intensity * 0.9, assetLibrary);
     setBackgroundStyle({
-      background: '#000',
-      backgroundImage: `
-        linear-gradient(
-          0deg,
-          rgba(255, 0, 0, 0.1) 33%,
-          rgba(0, 255, 0, 0.1) 66%,
-          rgba(0, 0, 255, 0.1) 100%
-        )
-      `,
-      animation: 'reality-break 0.1s infinite'
+      ...bgStyle,
+      animation: `${bgStyle.animation || ''}, reality-break 0.2s infinite`,
+      filter: `${bgStyle.filter || ''} hue-rotate(${Math.random() * 360}deg)`
     });
     
     // Glitched assets
@@ -490,14 +483,19 @@ const SophisticatedChaos = ({ assetLibrary, phase, intensity }) => {
             mixBlendMode: isGlitched ? 'difference' : 'normal',
             opacity: 0.5 + Math.random() * 0.5,
             animation: isGlitched ? 'reality-glitch 0.1s infinite' : 'none'
-          }
+          },
+          motion: isGlitched ? { type: 'glitch', intensity: intensity } : { type: 'warp', intensity: intensity * 0.5 }
         });
       }
     }
     
-    // Corrupted text fragments
+    // Corrupted text fragments with glitch fonts
     const textFragments = ['ERROR', 'NULL', 'UNDEFINED', '404', 'CORRUPT', 'SYSTEM_FAILURE'];
     for (let i = 0; i < 5; i++) {
+      const fontStyle = i % 2 === 0 ? 
+        fontLoader.current.getSuperLargeStyle(textFragments[i]) : 
+        fontLoader.current.getMicroStyle();
+      
       elements.push({
         id: `glitch-text-${i}`,
         type: 'text',
@@ -506,13 +504,13 @@ const SophisticatedChaos = ({ assetLibrary, phase, intensity }) => {
           position: 'absolute',
           left: `${Math.random() * 80 + 10}%`,
           top: `${Math.random() * 80 + 10}%`,
-          fontFamily: 'monospace',
-          fontSize: `${20 + Math.random() * 40}px`,
+          ...fontStyle,
           color: '#0f0',
           textShadow: '0 0 10px #0f0',
           transform: `rotate(${Math.random() * 360}deg)`,
           opacity: Math.random()
-        }
+        },
+        motion: { type: 'teleport', intensity: intensity * 0.8 }
       });
     }
     
@@ -522,10 +520,11 @@ const SophisticatedChaos = ({ assetLibrary, phase, intensity }) => {
   const createDreamSequence = (decision) => {
     const elements = [];
     
-    // Ethereal fog background
+    // Ethereal organic background
+    const bgStyle = backgroundGenerator.current.generateBackground('fade', intensity * 0.4, assetLibrary);
     setBackgroundStyle({
-      background: 'radial-gradient(ellipse at center, #2a1a3e 0%, #1a0a2e 50%, #000 100%)',
-      filter: 'blur(1px)'
+      ...bgStyle,
+      filter: `${bgStyle.filter || ''} blur(2px) brightness(0.6)`
     });
     
     // Floating dream assets
@@ -548,12 +547,14 @@ const SophisticatedChaos = ({ assetLibrary, phase, intensity }) => {
             transform: 'translate(-50%, -50%)',
             animation: `float-3d ${10 + Math.random() * 10}s ease-in-out infinite`,
             animationDelay: `${Math.random() * 5}s`
-          }
+          },
+          motion: { type: 'drift', intensity: 0.3 + Math.random() * 0.2 }
         });
       }
     }
     
-    // Dream text
+    // Dream text with ethereal font
+    const fontStyle = fontLoader.current.getRandomStyle('fade', intensity * 0.5);
     elements.push({
       id: 'dream-text',
       type: 'text',
@@ -563,13 +564,12 @@ const SophisticatedChaos = ({ assetLibrary, phase, intensity }) => {
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
-        fontFamily: 'Georgia, serif',
-        fontSize: '24px',
+        ...fontStyle,
         color: 'rgba(255, 255, 255, 0.4)',
         textAlign: 'center',
-        letterSpacing: '0.2em',
         animation: 'dream-pulse 6s ease-in-out infinite'
-      }
+      },
+      motion: { type: 'breathe', intensity: 0.5 }
     });
     
     setSceneElements(elements);
@@ -578,10 +578,11 @@ const SophisticatedChaos = ({ assetLibrary, phase, intensity }) => {
   const createMuseumGallery = (decision) => {
     const elements = [];
     
-    // Clean gallery walls
+    // Sophisticated gallery background
+    const bgStyle = backgroundGenerator.current.generateBackground('calm', intensity * 0.2, assetLibrary);
     setBackgroundStyle({
-      background: '#f5f5f5',
-      boxShadow: 'inset 0 -100px 100px -100px rgba(0, 0, 0, 0.1)'
+      ...bgStyle,
+      filter: 'brightness(1.2) contrast(0.9)'
     });
     
     // Curated artwork display
@@ -610,6 +611,7 @@ const SophisticatedChaos = ({ assetLibrary, phase, intensity }) => {
             cursor: 'pointer',
             transition: 'transform 0.3s ease'
           },
+          motion: { type: 'float', intensity: 0.1 + i * 0.05 },
           content: (
             <>
               <img
@@ -636,7 +638,8 @@ const SophisticatedChaos = ({ assetLibrary, phase, intensity }) => {
       }
     });
     
-    // Gallery title
+    // Gallery title with elegant font
+    const fontStyle = fontLoader.current.getRandomStyle('calm', 0.3);
     elements.push({
       id: 'gallery-title',
       type: 'text',
@@ -646,11 +649,11 @@ const SophisticatedChaos = ({ assetLibrary, phase, intensity }) => {
         top: '5%',
         left: '50%',
         transform: 'translateX(-50%)',
-        fontSize: '32px',
-        fontFamily: 'Georgia, serif',
-        color: '#333',
-        letterSpacing: '0.1em'
-      }
+        ...fontStyle,
+        fontSize: '42px',
+        color: '#333'
+      },
+      motion: { type: 'breathe', intensity: 0.2 }
     });
     
     setSceneElements(elements);
@@ -659,11 +662,11 @@ const SophisticatedChaos = ({ assetLibrary, phase, intensity }) => {
   const createCodePoetry = (decision) => {
     const elements = [];
     
-    // Terminal background
+    // Matrix-style background
+    const bgStyle = backgroundGenerator.current.generateBackground('build', intensity * 0.5, assetLibrary);
     setBackgroundStyle({
-      background: '#0a0a0a',
-      color: '#0f0',
-      fontFamily: 'monospace'
+      ...bgStyle,
+      filter: 'brightness(0.2) contrast(1.5) hue-rotate(120deg)'
     });
     
     // Code snippets as poetry
@@ -696,7 +699,8 @@ const SophisticatedChaos = ({ assetLibrary, phase, intensity }) => {
           opacity: 0.7 + Math.random() * 0.3,
           transform: `rotate(${Math.random() * 10 - 5}deg)`,
           whiteSpace: 'nowrap'
-        }
+        },
+        motion: { type: 'pulse', intensity: 0.3 + Math.random() * 0.3 }
       });
     }
     
@@ -725,15 +729,33 @@ const SophisticatedChaos = ({ assetLibrary, phase, intensity }) => {
     setSceneElements(elements);
   };
   
+  const createRandomChaos = (decision) => {
+    // Randomly select a scene type
+    const sceneTypes = [
+      createMinimalElegance,
+      createDataVisualization,
+      createDigitalBrutalism,
+      createVaporwave,
+      createGameCinematic,
+      createAssetTsunami,
+      createGlitchReality,
+      createDreamSequence,
+      createMuseumGallery,
+      createCodePoetry
+    ];
+    
+    const randomScene = sceneTypes[Math.floor(Math.random() * sceneTypes.length)];
+    randomScene(decision);
+  };
+  
   const createVaporwave = (decision) => {
     const elements = [];
     
-    // Gradient mesh background
+    // Vaporwave aesthetic background
+    const bgStyle = backgroundGenerator.current.generateBackground('build', intensity * 0.6, assetLibrary);
     setBackgroundStyle({
-      background: `
-        linear-gradient(180deg, #ff006e 0%, #8338ec 50%, #3a86ff 100%)
-      `,
-      filter: 'saturate(1.5)',
+      ...bgStyle,
+      filter: `${bgStyle.filter || ''} saturate(2) hue-rotate(270deg)`,
       position: 'relative'
     });
     
@@ -785,13 +807,15 @@ const SophisticatedChaos = ({ assetLibrary, phase, intensity }) => {
             opacity: 0.8,
             mixBlendMode: 'multiply',
             animation: `float-3d ${10 + Math.random() * 10}s ease-in-out infinite`
-          }
+          },
+          motion: { type: 'float', intensity: 0.5 + Math.random() * 0.3 }
         });
       }
     }
     
-    // Add Japanese text
+    // Add Japanese text with huge font
     const japaneseText = ['未来', '美的', 'サイバー', 'ネオン', '東京'];
+    const fontStyle = fontLoader.current.getSuperLargeStyle('');
     elements.push({
       id: 'vapor-text',
       type: 'text',
@@ -801,14 +825,14 @@ const SophisticatedChaos = ({ assetLibrary, phase, intensity }) => {
         top: '20%',
         left: '50%',
         transform: 'translateX(-50%)',
-        fontSize: '120px',
-        fontWeight: 'bold',
+        ...fontStyle,
         color: 'transparent',
         textStroke: '2px #fff',
         WebkitTextStroke: '2px #fff',
         textShadow: '0 0 40px rgba(255, 255, 255, 0.5)',
         animation: 'chrome-text 3s ease-in-out infinite'
-      }
+      },
+      motion: { type: 'sway', intensity: 0.4 }
     });
     
     setSceneElements(elements);
@@ -870,6 +894,41 @@ const SophisticatedChaos = ({ assetLibrary, phase, intensity }) => {
       if (sceneTimer.current) clearTimeout(sceneTimer.current);
     };
   }, [generateScene]);
+  
+  // Apply motion to rendered elements
+  useEffect(() => {
+    if (sceneElements.length === 0) return;
+    
+    // Apply motion to each element after a short delay to ensure DOM is ready
+    const motionTimeout = setTimeout(() => {
+      sceneElements.forEach((element, index) => {
+        const domElement = document.getElementById(element.id);
+        if (domElement && element.motion) {
+          motionSystem.current.applyMotion(domElement, {
+            motion: element.motion.type || 'float',
+            intensity: element.motion.intensity || intensity * 0.5,
+            phase: phase,
+            delay: index * 100
+          });
+        } else if (domElement && !element.motion) {
+          // Apply default motion based on phase
+          const defaultMotions = motionSystem.current.getSuggestedMotions(phase, intensity);
+          const motion = defaultMotions[index % defaultMotions.length];
+          motionSystem.current.applyMotion(domElement, {
+            motion: motion.type,
+            intensity: motion.intensity,
+            phase: phase,
+            delay: index * 50
+          });
+        }
+      });
+    }, 100);
+    
+    return () => {
+      clearTimeout(motionTimeout);
+      motionSystem.current.clear();
+    };
+  }, [sceneElements, phase, intensity]);
   
   // Render scene elements
   const renderElement = (element) => {

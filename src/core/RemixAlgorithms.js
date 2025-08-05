@@ -9,6 +9,14 @@ import AssetChaosDisplay from '../mutations/AssetChaosDisplay';
 import RealAssetChaos from '../mutations/RealAssetChaos';
 import SophisticatedChaos from '../mutations/SophisticatedChaos';
 import QuantumEvolution from '../mutations/QuantumEvolution';
+// New experimental mutations
+import FluidDistortionField from '../mutations/FluidDistortionField';
+import NeuralCellularAutomata from '../mutations/NeuralCellularAutomata';
+import GlitchPanopticon from '../mutations/GlitchPanopticon';
+import ParticleSwarmIntelligence from '../mutations/ParticleSwarmIntelligence';
+import QuantumRealityGlitch from '../mutations/QuantumRealityGlitch';
+import BiotechViralMutation from '../mutations/BiotechViralMutation';
+import VideoMashupMadness from '../mutations/VideoMashupMadness';
 
 const RemixAlgorithms = {
   mutations: [
@@ -132,6 +140,97 @@ const RemixAlgorithms = {
         emergentBehavior: true,
         quantumSuperposition: true
       }
+    },
+    {
+      id: 'fluid-distortion-field',
+      name: 'FLUID DISTORTION FIELD',
+      description: 'Liquid reality morphing through dimensional tears',
+      component: FluidDistortionField,
+      sources: ['ALL'],
+      config: {
+        liquidPhysics: true,
+        realTimeDistortion: true,
+        photoshopEffects: true,
+        dimensionalTears: true
+      }
+    },
+    {
+      id: 'neural-cellular-automata',
+      name: 'NEURAL CELLULAR AUTOMATA',
+      description: 'Self-evolving digital organisms with asset DNA',
+      component: NeuralCellularAutomata,
+      sources: ['ALL'],
+      config: {
+        aiEnhanced: true,
+        evolutionRules: 'dynamic',
+        assetDNA: true,
+        emergentPatterns: true
+      }
+    },
+    {
+      id: 'glitch-panopticon',
+      name: 'GLITCH PANOPTICON',
+      description: 'Digital decay surveillance state with VHS corruption',
+      component: GlitchPanopticon,
+      sources: ['ALL'],
+      config: {
+        datamoshing: true,
+        vhsEffects: true,
+        digitalDecay: true,
+        chromaticAberration: true
+      }
+    },
+    {
+      id: 'particle-swarm-intelligence',
+      name: 'PARTICLE SWARM INTELLIGENCE',
+      description: 'Emergent collective behavior from asset fragments',
+      component: ParticleSwarmIntelligence,
+      sources: ['ALL'],
+      config: {
+        flockingBehavior: true,
+        emergentPatterns: true,
+        collectiveIntelligence: true,
+        assetFragmentation: true
+      }
+    },
+    {
+      id: 'quantum-reality-glitch',
+      name: 'QUANTUM REALITY GLITCH',
+      description: 'Multiple dimensions existing simultaneously',
+      component: QuantumRealityGlitch,
+      sources: ['ALL'],
+      config: {
+        multidimensional: true,
+        quantumSuperposition: true,
+        realityTears: true,
+        dimensionalCollapse: true
+      }
+    },
+    {
+      id: 'biotech-viral-mutation',
+      name: 'BIOTECH VIRAL MUTATION',
+      description: 'Organic digital life forms evolving in real-time',
+      component: BiotechViralMutation,
+      sources: ['ALL'],
+      config: {
+        organicGrowth: true,
+        viralReplication: true,
+        geneticMutation: true,
+        biotechEvolution: true
+      }
+    },
+    {
+      id: 'video-mashup-madness',
+      name: 'VIDEO MASHUP MADNESS',
+      description: 'All your projects playing simultaneously in chaos',
+      component: VideoMashupMadness,
+      sources: ['ALL'],
+      config: {
+        videoMashup: true,
+        projectShowcase: true,
+        dynamicLayouts: true,
+        personalTouch: true
+      }
     }
   ],
   
@@ -163,7 +262,14 @@ const RemixAlgorithms = {
       AssetChaosDisplay,
       RealAssetChaos,
       SophisticatedChaos,
-      QuantumEvolution
+      QuantumEvolution,
+      FluidDistortionField,
+      NeuralCellularAutomata,
+      GlitchPanopticon,
+      ParticleSwarmIntelligence,
+      QuantumRealityGlitch,
+      BiotechViralMutation,
+      VideoMashupMadness
     ];
     
     return {

@@ -18,7 +18,11 @@ const QuantumEvolution = ({ assetLibrary, phase, intensity }) => {
     if (!assetLibrary) return;
     
     // Preload assets for quantum evolution
-    preloader.current.preloadMutationAssets('quantum-evolution', assetLibrary);
+    if (preloader.current.isMutationCached('quantum-evolution')) {
+      console.log('⚡ QUANTUM EVOLUTION - INSTANT LOAD!');
+    } else {
+      preloader.current.preloadMutationAssets('quantum-evolution', assetLibrary);
+    }
     
     quantumEngine.current = new QuantumChaosEngine(assetLibrary);
     

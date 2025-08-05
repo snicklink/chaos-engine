@@ -220,6 +220,13 @@ class AssetLibrary {
   
   getRandomAsset(category, project, type) {
     try {
+      // If only one argument, treat it as type for compatibility with CuratedAssetLibrary
+      if (arguments.length === 1 && typeof category === 'string') {
+        const assets = this.assetsByType[category];
+        if (!assets || assets.length === 0) return null;
+        return assets[Math.floor(Math.random() * assets.length)];
+      }
+      
       // Normalize project name
       const normalizedProject = this.projectMap[project] || project;
       

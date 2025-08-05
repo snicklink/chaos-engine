@@ -2,6 +2,10 @@
 
 class AssetPreloader {
   constructor() {
+    if (AssetPreloader.instance) {
+      return AssetPreloader.instance;
+    }
+    
     this.cache = new Map();
     this.loadingQueue = [];
     this.preloadedSets = new Map();
@@ -15,11 +19,19 @@ class AssetPreloader {
       totalLoaded: 0,
       failedLoads: 0
     };
+    
+    AssetPreloader.instance = this;
   }
   
+  // Quick check if mutation is already cached
+  isMutationCached(mutationId) {
+    return this.preloadedSets.has(mutationId);
+  }
+
   // Preload asset sets for specific mutations
   async preloadMutationAssets(mutationId, assetLibrary) {
     if (this.preloadedSets.has(mutationId)) {
+      console.log(`⚡ Using cached assets for ${mutationId} - INSTA SMOOTH!`);
       return this.preloadedSets.get(mutationId);
     }
     
@@ -315,5 +327,8 @@ class AssetPreloader {
     };
   }
 }
+
+// Singleton instance
+AssetPreloader.instance = null;
 
 export default AssetPreloader;
