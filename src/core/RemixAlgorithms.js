@@ -17,6 +17,7 @@ import ParticleSwarmIntelligence from '../mutations/ParticleSwarmIntelligence';
 import QuantumRealityGlitch from '../mutations/QuantumRealityGlitch';
 import BiotechViralMutation from '../mutations/BiotechViralMutation';
 import VideoMashupMadness from '../mutations/VideoMashupMadness';
+import VideoRemixChaos from '../mutations/VideoRemixChaos';
 
 const RemixAlgorithms = {
   mutations: [
@@ -231,6 +232,18 @@ const RemixAlgorithms = {
         dynamicLayouts: true,
         personalTouch: true
       }
+    },
+    {
+      id: 'video-remix-chaos',
+      name: 'VIDEO REMIX CHAOS',
+      description: 'Multiple videos layered and remixed in real-time',
+      component: VideoRemixChaos,
+      sources: ['ALL'],
+      config: {
+        videoLayers: true,
+        realTimeRemix: true,
+        phaseReactive: true
+      }
     }
   ],
   
@@ -269,7 +282,8 @@ const RemixAlgorithms = {
       ParticleSwarmIntelligence,
       QuantumRealityGlitch,
       BiotechViralMutation,
-      VideoMashupMadness
+      VideoMashupMadness,
+      VideoRemixChaos
     ];
     
     return {

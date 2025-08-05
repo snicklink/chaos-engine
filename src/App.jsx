@@ -35,7 +35,9 @@ function App() {
   return (
     <ErrorBoundary>
       <div className="orphanarium-app">
-        <MutationEngine />
+        <div className="blobtv-stage">
+          <MutationEngine />
+        </div>
       </div>
     </ErrorBoundary>
   )

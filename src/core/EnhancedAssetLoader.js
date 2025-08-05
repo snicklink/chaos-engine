@@ -166,10 +166,25 @@ class EnhancedAssetLoader {
       }
     }
     
-    // If we couldn't get enough unique assets, reset history and try again
+    // If we couldn't get enough unique assets, reset history but don't recurse
     if (assets.length < count / 2) {
       this.assetHistory.set(type, []);
-      return this.getDiverseAssets(type, count);
+      // Try one more time with cleared history, but return whatever we get
+      const retryAssets = [];
+      for (const project of projects) {
+        const projectAssets = this.assetCatalog[type]?.[project] || [];
+        projectAssets.forEach(filename => {
+          if (retryAssets.length < count) {
+            retryAssets.push({
+              url: `/assets-curated/essentials/${project}/${type}/${filename}`,
+              project,
+              type,
+              filename
+            });
+          }
+        });
+      }
+      return retryAssets;
     }
     
     return assets;

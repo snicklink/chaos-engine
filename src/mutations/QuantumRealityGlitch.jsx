@@ -84,7 +84,7 @@ const QuantumRealityGlitch = ({ assetLibrary, phase, intensity, assets }) => {
         }));
 
       return {
-        dimension: dimensionIndex = dimIndex,
+        dimension: dimIndex,
         name: dimension.name,
         filter: dimension.filter,
         blend: dimension.blend,
