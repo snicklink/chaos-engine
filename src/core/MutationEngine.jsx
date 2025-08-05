@@ -5,6 +5,7 @@ import RemixAlgorithms from './RemixAlgorithms';
 import StyleBox from '../components/StyleBox';
 import GlobalPreloader from './GlobalPreloader';
 import AudioManager from './AudioManager';
+import chaosRandomizer from './ChaosRandomizer';
 
 const MutationEngine = () => {
   const [currentMutation, setCurrentMutation] = useState(null);
@@ -30,11 +31,15 @@ const MutationEngine = () => {
       setAssets(loadedAssets);
       setAssetLibrary(assetLib);
       
-      // Initialize phase controller
+      // Initialize chaos randomizer
+      await chaosRandomizer.initialize(assetLib);
+      console.log('🎲 Chaos Randomizer Stats:', chaosRandomizer.getStats());
+      
+      // Initialize phase controller with MUCH shorter phases
       phaseController.current = new PhaseController({
         onPhaseChange: handlePhaseChange,
-        minDuration: 30000, // 30 seconds
-        maxDuration: 120000 // 120 seconds
+        minDuration: 5000,  // 5 seconds minimum
+        maxDuration: 20000  // 20 seconds maximum
       });
       
       // Don't start yet - wait for preload
@@ -106,6 +111,18 @@ const MutationEngine = () => {
     if (phaseController.current) {
       phaseController.current.start();
     }
+    
+    // AUTO-MUTATION: Trigger new mutations every 10-30 seconds
+    const autoMutate = () => {
+      const delay = 10000 + Math.random() * 20000; // 10-30 seconds
+      setTimeout(() => {
+        console.log('🎲 Auto-mutating...');
+        chaosRandomizer.refresh(); // Clear recently used
+        triggerNewMutation();
+        autoMutate(); // Schedule next mutation
+      }, delay);
+    };
+    autoMutate();
   };
 
   if (isLoading) {

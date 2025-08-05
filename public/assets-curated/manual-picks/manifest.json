@@ -1,12 +1,20 @@
 {
   "timestamp": "2025-08-05T11:48:36.921Z",
-  "assets": [
-    {
-      "name": "manifest.json",
-      "path": "manifest.json",
-      "type": "data",
-      "size": 204,
+  "assets": [],
+  "note": "Drop your images, videos, and audio files in this folder and add them to this manifest!",
+  "example": {
+    "comment": "To add assets, add entries like this to the assets array above:",
+    "sample_image": {
+      "name": "my-chaos-image.jpg",
+      "path": "my-chaos-image.jpg",
+      "type": "images",
+      "priority": "high"
+    },
+    "sample_video": {
+      "name": "epic-glitch.mp4",
+      "path": "epic-glitch.mp4",
+      "type": "video",
       "priority": "high"
     }
-  ]
+  }
 }

@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
+import chaosRandomizer from '../core/ChaosRandomizer';
 import './mutations.css';
 
 const QuantumRealityGlitch = ({ assetLibrary, phase, intensity, assets }) => {
@@ -21,42 +22,43 @@ const QuantumRealityGlitch = ({ assetLibrary, phase, intensity, assets }) => {
     { name: 'ETA', filter: 'blur(3px) contrast(150%)', blend: 'exclusion' }
   ];
 
-  // Get quantum asset variants
+  // Get quantum asset variants - LOTS OF THEM!
   const getQuantumAssets = useCallback(() => {
-    if (!assets || !assetLibrary) return [];
+    // Get a diverse mix of assets for each dimension
+    const mix = chaosRandomizer.getDiverseMix({
+      images: 40,  // 40 random images
+      videos: 20,  // 20 random videos - VIDEOS ARE KEY!
+      audio: 0
+    });
     
     const quantumAssets = [];
     
-    Object.keys(assets).forEach(project => {
-      // Images for quantum superposition
-      if (assets[project].images) {
-        assets[project].images.slice(0, 8).forEach(img => {
-          quantumAssets.push({
-            type: 'image',
-            url: img.url || img,
-            project,
-            name: img.name || 'unknown',
-            quantum: true
-          });
-        });
-      }
-      
-      // Text that exists in multiple states
-      if (assets[project].text) {
-        assets[project].text.slice(0, 5).forEach(txt => {
-          quantumAssets.push({
-            type: 'text',
-            content: txt.content || txt,
-            project,
-            name: txt.name || 'unknown',
-            quantum: true
-          });
-        });
-      }
+    // Add all images
+    mix.images.forEach(img => {
+      quantumAssets.push({
+        type: 'image',
+        url: img.url,
+        name: img.name,
+        project: img.project,
+        quantum: true
+      });
     });
     
+    // Add all videos - CRITICAL FOR DENSITY
+    mix.videos.forEach(vid => {
+      quantumAssets.push({
+        type: 'video',
+        url: vid.url,
+        name: vid.name,
+        project: vid.project,
+        quantum: true,
+        isVideo: true
+      });
+    });
+    
+    console.log('🌌 Quantum assets loaded:', mix.images.length, 'images,', mix.videos.length, 'videos');
     return quantumAssets;
-  }, [assets, assetLibrary]);
+  }, []);
 
   // Create quantum reality layers
   const createQuantumLayers = useCallback(() => {
@@ -66,7 +68,7 @@ const QuantumRealityGlitch = ({ assetLibrary, phase, intensity, assets }) => {
     const layers = quantumDimensions.map((dimension, dimIndex) => {
       const layerAssets = assetList
         .sort(() => 0.5 - Math.random())
-        .slice(0, 5 + Math.floor(intensity * 10))
+        .slice(0, 15 + Math.floor(intensity * 20)) // MORE ASSETS PER DIMENSION!
         .map((asset, index) => ({
           ...asset,
           id: `quantum-${dimIndex}-${index}`,
@@ -96,9 +98,9 @@ const QuantumRealityGlitch = ({ assetLibrary, phase, intensity, assets }) => {
     setQuantumLayers(layers);
   }, [getQuantumAssets, intensity, superposition, currentDimension]);
 
-  // Create dimensional tears/portals
+  // Create dimensional tears/portals - MORE OF THEM!
   const createDimensionTears = useCallback(() => {
-    const tearCount = 3 + Math.floor(intensity * 7);
+    const tearCount = 10 + Math.floor(intensity * 15); // More tears!
     const tears = [];
 
     for (let i = 0; i < tearCount; i++) {
@@ -225,7 +227,7 @@ const QuantumRealityGlitch = ({ assetLibrary, phase, intensity, assets }) => {
     return () => clearInterval(quantumInterval);
   }, [createQuantumLayers, createDimensionTears, intensity, performQuantumMeasurement, triggerQuantumCollapse]);
 
-  // Render quantum asset
+  // Render quantum asset - INCLUDING VIDEOS!
   const renderQuantumAsset = (asset, layerIndex) => {
     const transform = `
       translate(${asset.x}vw, ${asset.y}vh) 
@@ -233,7 +235,37 @@ const QuantumRealityGlitch = ({ assetLibrary, phase, intensity, assets }) => {
       scale(${asset.quantumState === 'collapsed' ? 1.2 : 0.8})
     `;
 
-    if (asset.type === 'image') {
+    if (asset.type === 'video' || asset.isVideo) {
+      // RENDER VIDEOS!
+      return (
+        <video
+          key={asset.id}
+          src={asset.url}
+          autoPlay
+          loop
+          muted
+          playsInline
+          style={{
+            position: 'absolute',
+            left: 0,
+            top: 0,
+            width: `${asset.size}px`,
+            height: `${asset.size}px`,
+            objectFit: 'cover',
+            transform,
+            opacity: asset.opacity,
+            borderRadius: asset.quantumState === 'entangled' ? '50%' : '0%',
+            border: asset.quantumState === 'collapsed' ? '2px solid #00ffff' : 'none',
+            filter: asset.quantumState === 'superposition' ? 'blur(2px)' : 'none',
+            mixBlendMode: 'screen',
+            transition: 'all 0.3s ease-out'
+          }}
+          onError={(e) => {
+            e.target.style.display = 'none';
+          }}
+        />
+      );
+    } else if (asset.type === 'image') {
       return (
         <img
           key={asset.id}
@@ -358,10 +390,14 @@ const QuantumRealityGlitch = ({ assetLibrary, phase, intensity, assets }) => {
       {/* Controls */}
       <div className="quantum-controls">
         <button 
-          onClick={triggerQuantumCollapse}
+          onClick={() => {
+            chaosRandomizer.refresh();
+            createQuantumLayers();
+            triggerQuantumCollapse();
+          }}
           className="quantum-button"
         >
-          ⚛️ COLLAPSE WAVE
+          ⚛️ NEW REALITY
         </button>
         
         <button 

@@ -225,14 +225,38 @@ const VideoMashupMadness = ({ assetLibrary, phase, intensity, assets }) => {
         ))}
       </div>
 
+      {/* Controls */}
+      <div className="mashup-controls">
+        <button 
+          onClick={() => {
+            chaosRandomizer.refresh();
+            createVideoLayers();
+          }}
+          className="mashup-button"
+        >
+          🎥 NEW MASHUP
+        </button>
+        
+        <button 
+          onClick={() => {
+            const styles = ['grid', 'cascade', 'spiral', 'kaleidoscope', 'splitscreen', 'chaos'];
+            const newStyle = styles[Math.floor(Math.random() * styles.length)];
+            setMashupStyle(newStyle);
+          }}
+          className="mashup-button"
+        >
+          🎨 CHANGE STYLE
+        </button>
+      </div>
+
       {/* Info display */}
       <div className="mutation-info mashup-info">
         <h3>VIDEO MASHUP MADNESS</h3>
         <p>All your projects playing simultaneously</p>
         <div className="mutation-stats">
-          <span>VIDEOS: {videoLayers.filter(l => l.asset.type === 'videos').length}</span>
+          <span>VIDEOS: {videoLayers.filter(l => l.asset && (l.asset.type === 'video' || l.asset.type === 'videos' || l.asset.isVideo)).length}</span>
           <span>STYLE: {mashupStyle.toUpperCase()}</span>
-          <span>PROJECTS: {currentProjects.join(', ')}</span>
+          <span>PROJECTS: {currentProjects.slice(0, 3).join(', ')}{currentProjects.length > 3 ? '...' : ''}</span>
         </div>
       </div>
     </div>

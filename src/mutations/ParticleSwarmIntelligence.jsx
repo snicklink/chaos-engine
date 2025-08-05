@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
+import chaosRandomizer from '../core/ChaosRandomizer';
 import './mutations.css';
 
 const ParticleSwarmIntelligence = ({ assetLibrary, phase, intensity, assets }) => {
@@ -10,13 +11,17 @@ const ParticleSwarmIntelligence = ({ assetLibrary, phase, intensity, assets }) =
   const [swarmBehavior, setSwarmBehavior] = useState('flock');
   const [emergentPattern, setEmergentPattern] = useState('none');
 
-  // Particle system parameters
-  const MAX_PARTICLES = 3000 + Math.floor(intensity * 5000);
+  // Particle system parameters - MORE PARTICLES!
+  const MAX_PARTICLES = 1000 + Math.floor(intensity * 2000); // Min 1000 particles
   const PARTICLE_SPEED = 1 + intensity * 3;
   const PERCEPTION_RADIUS = 30 + intensity * 50;
   const SEPARATION_FORCE = 0.5 + intensity * 1.5;
   const ALIGNMENT_FORCE = 0.3 + intensity * 0.7;
   const COHESION_FORCE = 0.2 + intensity * 0.8;
+  
+  // Store loaded assets
+  const [particleAssets, setParticleAssets] = useState([]);
+  const [videoElements, setVideoElements] = useState([]);
 
   // Swarm behaviors
   const swarmBehaviors = {
@@ -30,19 +35,39 @@ const ParticleSwarmIntelligence = ({ assetLibrary, phase, intensity, assets }) =
     chaos: { separation: Math.random() * 3, alignment: Math.random() * 3, cohesion: Math.random() * 3 }
   };
 
-  // Get asset colors for particles
-  const getAssetColors = useCallback(() => {
-    if (!assetLibrary?.getCuratedManifest) {
-      return ['#ff6b6b', '#4ecdc4', '#45b7d1', '#f7b731', '#5f27cd', '#00d2d3'];
-    }
+  // Load REAL assets for particles
+  const loadParticleAssets = useCallback(async () => {
+    // Get random mix of images and videos
+    const mix = chaosRandomizer.getDiverseMix({
+      images: 30,  // 30 random images
+      videos: 10,  // 10 random videos
+      audio: 0
+    });
     
-    const manifest = assetLibrary.getCuratedManifest();
-    return manifest.colors ? manifest.colors.slice(0, 50) : ['#ffffff'];
-  }, [assetLibrary]);
+    setParticleAssets([...mix.images, ...mix.videos]);
+    
+    // Preload video elements
+    const videoEls = [];
+    for (const video of mix.videos) {
+      const videoEl = document.createElement('video');
+      videoEl.src = video.url;
+      videoEl.loop = true;
+      videoEl.muted = true;
+      videoEl.autoplay = true;
+      videoEl.playsInline = true;
+      videoEl.style.display = 'none';
+      document.body.appendChild(videoEl);
+      videoEls.push({ element: videoEl, asset: video });
+    }
+    setVideoElements(videoEls);
+    
+    console.log('🎨 Loaded particle assets:', mix.images.length, 'images,', mix.videos.length, 'videos');
+    return [...mix.images, ...mix.videos];
+  }, []);
 
-  // Particle class
+  // Particle class with REAL ASSETS
   class Particle {
-    constructor(x, y, assetColors) {
+    constructor(x, y, particleAssets) {
       this.position = { x, y };
       this.velocity = { 
         x: (Math.random() - 0.5) * 4, 
@@ -51,14 +76,25 @@ const ParticleSwarmIntelligence = ({ assetLibrary, phase, intensity, assets }) =
       this.acceleration = { x: 0, y: 0 };
       this.maxSpeed = PARTICLE_SPEED;
       this.maxForce = 0.3;
-      this.size = 2 + Math.random() * 4;
-      this.color = assetColors[Math.floor(Math.random() * assetColors.length)];
+      this.size = 20 + Math.random() * 40; // Bigger for images
+      
+      // Assign a real asset to this particle
+      if (particleAssets && particleAssets.length > 0) {
+        this.asset = particleAssets[Math.floor(Math.random() * particleAssets.length)];
+        this.isVideo = this.asset?.type === 'video';
+      } else {
+        this.asset = null;
+        this.color = '#' + Math.floor(Math.random()*16777215).toString(16);
+      }
+      
       this.alpha = 0.6 + Math.random() * 0.4;
       this.trail = [];
       this.energy = Math.random();
       this.age = 0;
       this.mass = 0.5 + Math.random() * 1.5;
       this.type = Math.random() < 0.1 ? 'leader' : 'follower';
+      this.rotation = Math.random() * 360;
+      this.rotationSpeed = (Math.random() - 0.5) * 5;
     }
 
     // Apply force to particle
@@ -262,11 +298,15 @@ const ParticleSwarmIntelligence = ({ assetLibrary, phase, intensity, assets }) =
       this.energy = Math.max(0, this.energy - 0.001);
     }
 
-    // Render particle
-    render(ctx) {
+    // Render particle with REAL ASSETS
+    render(ctx, imageCache) {
+      // Update rotation
+      this.rotation += this.rotationSpeed;
+      
       // Draw trail
       if (this.trail.length > 1) {
-        ctx.strokeStyle = this.color + '40';
+        const trailColor = this.asset ? '#ffffff40' : (this.color + '40');
+        ctx.strokeStyle = trailColor;
         ctx.lineWidth = 1;
         ctx.beginPath();
         ctx.moveTo(this.trail[0].x, this.trail[0].y);
@@ -276,48 +316,89 @@ const ParticleSwarmIntelligence = ({ assetLibrary, phase, intensity, assets }) =
         ctx.stroke();
       }
 
-      // Draw particle
-      const alpha = Math.floor(this.alpha * 255).toString(16).padStart(2, '0');
-      ctx.fillStyle = this.color + alpha;
+      ctx.save();
+      ctx.translate(this.position.x, this.position.y);
+      ctx.rotate((this.rotation * Math.PI) / 180);
+      ctx.globalAlpha = this.alpha;
       
-      if (this.type === 'leader') {
-        // Leaders are larger and brighter
-        ctx.shadowColor = this.color;
-        ctx.shadowBlur = 10;
-        ctx.beginPath();
-        ctx.arc(this.position.x, this.position.y, this.size * 1.5, 0, Math.PI * 2);
-        ctx.fill();
+      if (this.asset && imageCache[this.asset.url]) {
+        // Draw the actual image/video
+        const img = imageCache[this.asset.url];
+        const drawSize = this.type === 'leader' ? this.size * 1.5 : this.size;
+        
+        // Add glow for leaders
+        if (this.type === 'leader') {
+          ctx.shadowColor = '#ffffff';
+          ctx.shadowBlur = 20;
+        }
+        
+        try {
+          ctx.drawImage(img, -drawSize/2, -drawSize/2, drawSize, drawSize);
+        } catch (e) {
+          // Fallback to colored circle if image fails
+          ctx.fillStyle = '#ff00ff';
+          ctx.beginPath();
+          ctx.arc(0, 0, drawSize/2, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        
         ctx.shadowBlur = 0;
       } else {
-        // Regular particles
+        // Fallback colored particle
+        ctx.fillStyle = this.color || '#ffffff';
+        const drawSize = this.type === 'leader' ? this.size * 1.5 : this.size;
         ctx.beginPath();
-        ctx.arc(this.position.x, this.position.y, this.size, 0, Math.PI * 2);
+        ctx.arc(0, 0, drawSize/2, 0, Math.PI * 2);
         ctx.fill();
       }
+      
+      ctx.restore();
     }
   }
 
-  // Initialize particle system
-  const initializeParticles = useCallback(() => {
+  // Initialize particle system with REAL ASSETS
+  const initializeParticles = useCallback(async () => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const assetColors = getAssetColors();
+    // Load real assets first
+    const assets = await loadParticleAssets();
     const particles = [];
 
     for (let i = 0; i < MAX_PARTICLES; i++) {
       particles.push(new Particle(
         Math.random() * canvas.width,
         Math.random() * canvas.height,
-        assetColors
+        assets
       ));
     }
 
     particlesRef.current = particles;
     setParticleCount(particles.length);
-  }, [MAX_PARTICLES, getAssetColors]);
+  }, [MAX_PARTICLES, loadParticleAssets]);
 
-  // Animation loop
+  // Create image cache for performance
+  const imageCache = useRef({});
+  
+  // Preload images
+  useEffect(() => {
+    particleAssets.forEach(asset => {
+      if (asset.type === 'images' && !imageCache.current[asset.url]) {
+        const img = new Image();
+        img.src = asset.url;
+        img.onload = () => {
+          imageCache.current[asset.url] = img;
+        };
+      }
+    });
+    
+    // Add video elements to cache
+    videoElements.forEach(({ element, asset }) => {
+      imageCache.current[asset.url] = element;
+    });
+  }, [particleAssets, videoElements]);
+  
+  // Animation loop with image rendering
   const animate = useCallback(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -330,11 +411,11 @@ const ParticleSwarmIntelligence = ({ assetLibrary, phase, intensity, assets }) =
     ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    // Update and render particles
+    // Update and render particles with images
     particles.forEach(particle => {
       particle.flock(particles, behavior);
       particle.update(canvas);
-      particle.render(ctx);
+      particle.render(ctx, imageCache.current);
     });
 
     // Detect emergent patterns
@@ -439,10 +520,13 @@ const ParticleSwarmIntelligence = ({ assetLibrary, phase, intensity, assets }) =
       {/* Controls */}
       <div className="swarm-controls">
         <button 
-          onClick={initializeParticles}
+          onClick={() => {
+            chaosRandomizer.refresh();
+            initializeParticles();
+          }}
           className="swarm-button"
         >
-          🔄 RESET SWARM
+          🔄 NEW ASSETS
         </button>
         
         <button 
