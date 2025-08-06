@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chaos Randomizer Test</title>
+    <style>
+        body {
+            background: #000;
+            color: #fff;
+            font-family: monospace;
+            padding: 20px;
+        }
+        .test-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            margin: 20px 0;
+        }
+        .asset-card {
+            border: 1px solid #0ff;
+            padding: 10px;
+            text-align: center;
+        }
+        .asset-card img, .asset-card video {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+        button {
+            background: #0ff;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎲 CHAOS RANDOMIZER TEST</h1>
+    <p>Testing that assets are randomized properly...</p>
+    
+    <div>
+        <button onclick="testRandomImages()">Test Random Images</button>
+        <button onclick="testRandomVideos()">Test Random Videos</button>
+        <button onclick="testCharacterVideos()">Test Character Videos</button>
+    </div>
+    
+    <div id="results"></div>
+    <div id="grid" class="test-grid"></div>
+    
+    <script type="module">
+        import chaosRandomizer from './src/core/ChaosRandomizer.js';
+        
+        window.testRandomImages = async function() {
+            const images = chaosRandomizer.getRandomAssets('images', 10);
+            displayAssets(images, 'Images');
+        }
+        
+        window.testRandomVideos = async function() {
+            const videos = chaosRandomizer.getRandomAssets('videos', 10);
+            displayAssets(videos, 'Videos');
+        }
+        
+        window.testCharacterVideos = async function() {
+            const videos = chaosRandomizer.getCharacterVideos(10);
+            displayAssets(videos, 'Character Videos');
+        }
+        
+        function displayAssets(assets, type) {
+            const results = document.getElementById('results');
+            const grid = document.getElementById('grid');
+            
+            results.innerHTML = `<h2>${type}: ${assets.length} assets loaded</h2>`;
+            
+            grid.innerHTML = '';
+            assets.forEach(asset => {
+                const card = document.createElement('div');
+                card.className = 'asset-card';
+                
+                if (asset.type === 'video' || asset.isVideo) {
+                    card.innerHTML = `
+                        <video src="${asset.url}" autoplay loop muted></video>
+                        <p>${asset.name}</p>
+                        <small>${asset.project}</small>
+                    `;
+                } else {
+                    card.innerHTML = `
+                        <img src="${asset.url}" alt="${asset.name}">
+                        <p>${asset.name}</p>
+                        <small>${asset.project}</small>
+                    `;
+                }
+                
+                grid.appendChild(card);
+            });
+        }
+        
+        // Initialize on load
+        window.addEventListener('load', async () => {
+            const AssetLibrary = (await import('./src/core/AssetLibraryWrapper.js')).default;
+            const assetLib = new AssetLibrary();
+            await assetLib.loadAllAssets();
+            await chaosRandomizer.initialize(assetLib);
+            
+            const stats = chaosRandomizer.getStats();
+            document.getElementById('results').innerHTML = `
+                <h2>✅ Randomizer Initialized!</h2>
+                <p>Total Assets: ${stats.totalAssets}</p>
+                <p>Images: ${stats.images}</p>
+                <p>Videos: ${stats.videos}</p>
+                <p>Audio: ${stats.audio}</p>
+            `;
+        });
+    </script>
+</body>
+</html>

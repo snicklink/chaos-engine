@@ -299,26 +299,9 @@ const MutationEngine = () => {
         className="recombine-button"
         onClick={handleRecombineNow}
       >
-        🧬 RECOMBINE NOW
+        MUTATE
       </button>
       
-      <div className="phase-indicator">
-        <span className="phase-label">PHASE:</span>
-        <span className="phase-value">{phase.toUpperCase()}</span>
-      </div>
-      
-      {/* Ghost memory indicator */}
-      <div className="ghost-indicator" style={{
-        position: 'fixed',
-        bottom: '60px',
-        left: '20px',
-        color: 'rgba(255, 255, 255, 0.6)',
-        fontSize: '12px',
-        fontFamily: 'monospace',
-        zIndex: 1000
-      }}>
-        <span>👻 GHOSTS: {memoryGhostEngine.ghosts.length}</span>
-      </div>
       
       <StyleBox 
         currentMutation={currentMutation}

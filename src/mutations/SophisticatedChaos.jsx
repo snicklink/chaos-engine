@@ -664,8 +664,12 @@ const SophisticatedChaos = ({ assetLibrary, phase, intensity }) => {
     
     // Matrix-style background
     const bgStyle = backgroundGenerator.current.generateBackground('build', intensity * 0.5, assetLibrary);
+    // Fix: Don't spread bgStyle, set individual properties
     setBackgroundStyle({
-      ...bgStyle,
+      backgroundColor: bgStyle.backgroundColor || '#000',
+      backgroundImage: bgStyle.backgroundImage || 'none',
+      backgroundSize: bgStyle.backgroundSize || 'cover',
+      backgroundPosition: bgStyle.backgroundPosition || 'center',
       filter: 'brightness(0.2) contrast(1.5) hue-rotate(120deg)'
     });
     

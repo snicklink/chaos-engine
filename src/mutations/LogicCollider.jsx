@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import chaosRandomizer from '../core/ChaosRandomizer';
 import './mutations.css';
 
 const LogicCollider = ({ assets, assetLibrary, phase, intensity }) => {
@@ -6,7 +7,9 @@ const LogicCollider = ({ assets, assetLibrary, phase, intensity }) => {
   const [hungerMeter, setHungerMeter] = useState(100);
   const [questObjectives, setQuestObjectives] = useState([]);
   const [berlinEnvironment, setBerlinEnvironment] = useState(null);
+  const [backgroundVideos, setBackgroundVideos] = useState([]);
   const containerRef = useRef(null);
+  const videoRefs = useRef({});
   
   // Döner-related assets from Neo-Neukölln
   const doenerAssets = [
@@ -27,16 +30,34 @@ const LogicCollider = ({ assets, assetLibrary, phase, intensity }) => {
   ];
   
   useEffect(() => {
-    // Set Berlin environment background
-    const bgIndex = Math.floor(Math.random() * berlinBackgrounds.length);
-    setBerlinEnvironment(berlinBackgrounds[bgIndex]);
+    // Get random videos for dynamic backgrounds
+    const videos = chaosRandomizer.getRandomAssets('videos', 3);
+    setBackgroundVideos(videos);
     
-    // Generate quest elements with real assets
+    // Randomly select Berlin background OR use video
+    if (Math.random() > 0.3) {
+      // Use random video as background
+      setBerlinEnvironment(null);
+    } else {
+      // Use Berlin static background
+      const bgIndex = Math.floor(Math.random() * berlinBackgrounds.length);
+      setBerlinEnvironment(berlinBackgrounds[bgIndex]);
+    }
+    
+    // Generate quest elements with MIXED assets
     const elements = [];
     const count = Math.floor(intensity * 12) + 8;
     
+    // Get random images from chaos randomizer for variety
+    const randomAssets = chaosRandomizer.getRandomAssets('images', count);
+    
     for (let i = 0; i < count; i++) {
-      const assetIndex = Math.floor(Math.random() * doenerAssets.length);
+      // Mix döner assets with random chaos
+      const useRandom = Math.random() > 0.4;
+      const asset = useRandom && randomAssets[i] ? 
+        randomAssets[i].url : 
+        doenerAssets[Math.floor(Math.random() * doenerAssets.length)];
+      
       elements.push({
         id: i,
         x: Math.random() * 90 + 5,
@@ -44,8 +65,8 @@ const LogicCollider = ({ assets, assetLibrary, phase, intensity }) => {
         vx: (Math.random() - 0.5) * 2,
         vy: (Math.random() - 0.5) * 2,
         size: Math.random() * 60 + 40,
-        asset: doenerAssets[assetIndex],
-        type: getQuestType(assetIndex),
+        asset: asset,
+        type: getQuestType(Math.floor(Math.random() * 5)),
         rotation: Math.random() * 360,
         rotationSpeed: (Math.random() - 0.5) * 5,
         hunger: Math.random() * 50 + 25,
@@ -112,23 +133,80 @@ const LogicCollider = ({ assets, assetLibrary, phase, intensity }) => {
     return types[assetIndex % types.length];
   };
   
+  // Play background videos
+  useEffect(() => {
+    Object.values(videoRefs.current).forEach(video => {
+      if (video) {
+        video.play().catch(() => {});
+      }
+    });
+  }, [backgroundVideos]);
+
   return (
     <div 
       className="mutation-logic-collider"
       ref={containerRef}
       style={{
-        backgroundImage: berlinEnvironment ? `url(${berlinEnvironment})` : 'none',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundBlendMode: 'multiply'
+        position: 'relative',
+        width: '100%',
+        height: '100%',
+        overflow: 'hidden'
       }}
     >
+      {/* Dynamic video backgrounds */}
+      {!berlinEnvironment && backgroundVideos.length > 0 && (
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          zIndex: 0
+        }}>
+          {backgroundVideos.map((video, i) => (
+            <video
+              key={`bg-video-${i}`}
+              ref={el => videoRefs.current[`bg-${i}`] = el}
+              src={video.url}
+              autoPlay
+              muted
+              loop
+              playsInline
+              style={{
+                position: 'absolute',
+                left: `${(i % 2) * 50}%`,
+                top: `${Math.floor(i / 2) * 50}%`,
+                width: '60%',
+                height: '60%',
+                objectFit: 'cover',
+                opacity: 0.3,
+                filter: `brightness(${0.5 + intensity * 0.3}) hue-rotate(${i * 90}deg)`,
+                mixBlendMode: 'screen'
+              }}
+              onLoadedMetadata={(e) => {
+                e.target.playbackRate = 0.5 + Math.random();
+              }}
+            />
+          ))}
+        </div>
+      )}
+      
+      {/* Static background as fallback */}
+      {berlinEnvironment && (
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          backgroundImage: `url(${berlinEnvironment})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          filter: `brightness(${0.5 + intensity * 0.3})`,
+          zIndex: 0
+        }} />
+      )}
+      
       {/* Berlin street overlay */}
       <div className="berlin-overlay" style={{
         background: `linear-gradient(45deg, 
-          rgba(0,0,0,0.7), 
-          rgba(139, 69, 19, 0.3), 
-          rgba(255, 165, 0, 0.2))`,
+          rgba(0,0,0,${0.7 - intensity * 0.3}), 
+          rgba(139, 69, 19, ${0.3 + intensity * 0.2}), 
+          rgba(255, 165, 0, ${0.2 + intensity * 0.3}))`,
         position: 'absolute',
         inset: 0,
         zIndex: 1

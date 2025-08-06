@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Asset Loading Test</title>
+    <style>
+        body {
+            background: #000;
+            color: #0ff;
+            font-family: monospace;
+            padding: 20px;
+        }
+        .asset-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .asset-item {
+            border: 1px solid #0ff;
+            padding: 10px;
+            text-align: center;
+        }
+        .asset-item img {
+            max-width: 100%;
+            height: 150px;
+            object-fit: contain;
+        }
+        .error {
+            color: #ff0000;
+        }
+        .success {
+            color: #00ff00;
+        }
+    </style>
+</head>
+<body>
+    <h1>CHAOS ENGINE - Asset Loading Test</h1>
+    <div id="status">Loading manifest...</div>
+    <div id="asset-grid" class="asset-grid"></div>
+
+    <script>
+        async function testAssets() {
+            const statusEl = document.getElementById('status');
+            const gridEl = document.getElementById('asset-grid');
+            
+            try {
+                // Load the manifest
+                const response = await fetch('/assets/chaos-manifest.json');
+                const manifest = await response.json();
+                
+                statusEl.innerHTML = `<span class="success">✓ Manifest loaded: ${manifest.totalAssets} assets</span>`;
+                
+                // Test some known assets
+                const testAssets = [
+                    { path: '/assets/neo-neukoelln/images/doener_kebap.webp', name: 'Döner Kebap' },
+                    { path: '/assets/neo-neukoelln/images/gamelogo.png', name: 'Game Logo' },
+                    { path: '/assets/miami-voice/images/tico.png', name: 'Tico' },
+                    { path: '/assets/miami-voice/images/sun.svg', name: 'Sun' },
+                    { path: '/assets/blobtv/images/blobtv_logo.png', name: 'BlobTV Logo' },
+                    { path: '/assets/ikigaii/images/logo.png', name: 'Ikigaii Logo' },
+                    { path: '/assets/derpaket/images/DerPaket_logo.png', name: 'DerPaket Logo' },
+                    { path: '/assets/rosebud/images/snicklink_logo.png', name: 'Snicklink Logo' }
+                ];
+                
+                for (const asset of testAssets) {
+                    const item = document.createElement('div');
+                    item.className = 'asset-item';
+                    
+                    const img = new Image();
+                    img.src = asset.path;
+                    
+                    img.onload = () => {
+                        item.innerHTML = `
+                            <img src="${asset.path}" alt="${asset.name}">
+                            <p class="success">✓ ${asset.name}</p>
+                            <small>${asset.path}</small>
+                        `;
+                    };
+                    
+                    img.onerror = () => {
+                        item.innerHTML = `
+                            <p class="error">✗ ${asset.name}</p>
+                            <small>${asset.path}</small>
+                            <p class="error">Failed to load</p>
+                        `;
+                    };
+                    
+                    gridEl.appendChild(item);
+                }
+                
+            } catch (error) {
+                statusEl.innerHTML = `<span class="error">✗ Error: ${error.message}</span>`;
+            }
+        }
+        
+        testAssets();
+    </script>
+</body>
+</html>

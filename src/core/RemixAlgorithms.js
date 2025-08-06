@@ -18,14 +18,15 @@ import QuantumRealityGlitch from '../mutations/QuantumRealityGlitch';
 import BiotechViralMutation from '../mutations/BiotechViralMutation';
 import VideoMashupMadness from '../mutations/VideoMashupMadness';
 import VideoRemixChaos from '../mutations/VideoRemixChaos';
+import BerlinFeverDream from '../mutations/BerlinFeverDream';
 
 const RemixAlgorithms = {
   mutations: [
     {
       id: 'berlin-fever-dream',
       name: 'BERLIN FEVER DREAM',
-      description: 'Pixel döner dealer invades 3D reality',
-      component: AssetParasite,
+      description: 'Döner dealers invade reality with techno chaos',
+      component: BerlinFeverDream,
       sources: ['neo-neukoelln', 'rosebud', 'vibetales', 'miami-voice'],
       config: {
         primaryAsset: 'doener_dealer',
@@ -283,7 +284,8 @@ const RemixAlgorithms = {
       QuantumRealityGlitch,
       BiotechViralMutation,
       VideoMashupMadness,
-      VideoRemixChaos
+      VideoRemixChaos,
+      BerlinFeverDream
     ];
     
     return {

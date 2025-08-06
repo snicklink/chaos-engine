@@ -87,4 +87,4 @@ ngrok.log
 localtunnel.log
 
 # Test files
-test-*.html
+test-*.html/public/assets-curated/manual-picks/manual-assets-large/

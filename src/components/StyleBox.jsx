@@ -89,14 +89,14 @@ const StyleBox = ({ currentMutation, intensity, phase, assetLibrary }) => {
   }
   
   return (
-    <div className="style-box">
-      <div className="style-box-title">
+    <div className="style-box style-box-compact">
+      <div className="style-box-title" style={{ fontSize: '10px', padding: '4px 8px' }}>
         STYLEBOX
         <span 
           style={{ 
             float: 'right', 
             cursor: 'pointer',
-            fontSize: '10px',
+            fontSize: '9px',
             opacity: 0.6
           }}
           onClick={() => setIsMinimized(true)}
@@ -105,24 +105,24 @@ const StyleBox = ({ currentMutation, intensity, phase, assetLibrary }) => {
         </span>
       </div>
       
-      <div className="style-box-content">
-        <div className="style-stat">
-          <span className="style-stat-label">Program:</span>
-          <span className="style-stat-value" style={{ fontSize: '10px' }}>
+      <div className="style-box-content" style={{ padding: '6px' }}>
+        <div className="style-stat" style={{ marginBottom: '4px' }}>
+          <span className="style-stat-label" style={{ fontSize: '9px' }}>Program:</span>
+          <span className="style-stat-value" style={{ fontSize: '9px' }}>
             {currentMutation?.name || 'INITIALIZING'}
           </span>
         </div>
         
-        <div className="style-stat">
-          <span className="style-stat-label">Phase:</span>
-          <span className="style-stat-value" style={{ color: getPhaseColor() }}>
+        <div className="style-stat" style={{ marginBottom: '4px' }}>
+          <span className="style-stat-label" style={{ fontSize: '9px' }}>Phase:</span>
+          <span className="style-stat-value" style={{ color: getPhaseColor(), fontSize: '9px' }}>
             {phase?.toUpperCase() || 'UNKNOWN'}
           </span>
         </div>
         
-        <div className="style-stat">
-          <span className="style-stat-label">Intensity:</span>
-          <div className="style-stat-bar">
+        <div className="style-stat" style={{ marginBottom: '3px' }}>
+          <span className="style-stat-label" style={{ fontSize: '8px' }}>Intensity:</span>
+          <div className="style-stat-bar" style={{ height: '3px' }}>
             <div 
               className="style-stat-fill" 
               style={{ width: `${(intensity || 0) * 100}%` }}
@@ -130,9 +130,9 @@ const StyleBox = ({ currentMutation, intensity, phase, assetLibrary }) => {
           </div>
         </div>
         
-        <div className="style-stat">
-          <span className="style-stat-label">Sophistication:</span>
-          <div className="style-stat-bar">
+        <div className="style-stat" style={{ marginBottom: '3px' }}>
+          <span className="style-stat-label" style={{ fontSize: '8px' }}>Sophistication:</span>
+          <div className="style-stat-bar" style={{ height: '3px' }}>
             <div 
               className="style-stat-fill" 
               style={{ width: `${metrics.sophistication * 100}%` }}
@@ -140,9 +140,9 @@ const StyleBox = ({ currentMutation, intensity, phase, assetLibrary }) => {
           </div>
         </div>
         
-        <div className="style-stat">
-          <span className="style-stat-label">Unpredictability:</span>
-          <div className="style-stat-bar">
+        <div className="style-stat" style={{ marginBottom: '3px' }}>
+          <span className="style-stat-label" style={{ fontSize: '8px' }}>Chaos:</span>
+          <div className="style-stat-bar" style={{ height: '3px' }}>
             <div 
               className="style-stat-fill" 
               style={{ 
@@ -153,66 +153,11 @@ const StyleBox = ({ currentMutation, intensity, phase, assetLibrary }) => {
           </div>
         </div>
         
-        <div className="style-stat">
-          <span className="style-stat-label">Aesthetic Complexity:</span>
-          <div className="style-stat-bar">
-            <div 
-              className="style-stat-fill" 
-              style={{ 
-                width: `${metrics.aestheticComplexity * 100}%`,
-                background: 'linear-gradient(90deg, #5f27cd, #a855f7)'
-              }}
-            />
-          </div>
-        </div>
-        
-        <div className="style-stat">
-          <span className="style-stat-label">Emergent Behavior:</span>
-          <div className="style-stat-bar">
-            <div 
-              className="style-stat-fill" 
-              style={{ 
-                width: `${metrics.emergentBehavior * 100}%`,
-                background: 'linear-gradient(90deg, #4ecdc4, #00d2d3)'
-              }}
-            />
-          </div>
-        </div>
-        
-        {currentMutation?.id === 'quantum-evolution' && (
-          <div className="style-stat">
-            <span className="style-stat-label">Consciousness:</span>
-            <div className="style-stat-bar">
-              <div 
-                className="style-stat-fill" 
-                style={{ 
-                  width: `${metrics.consciousnessLevel * 100}%`,
-                  background: 'linear-gradient(90deg, #ff1493, #8b00ff)',
-                  animation: 'consciousness-pulse 2s infinite'
-                }}
-              />
-            </div>
-          </div>
-        )}
         
         {stats.total && (
-          <div className="style-stat">
-            <span className="style-stat-label">Assets Loaded:</span>
-            <span className="style-stat-value">{stats.total}</span>
-          </div>
-        )}
-        
-        <div className="style-description">
-          {getMutationDescription()}
-        </div>
-        
-        {currentMutation?.sources && (
-          <div style={{ 
-            marginTop: '8px', 
-            fontSize: '10px', 
-            opacity: 0.5 
-          }}>
-            Sources: {currentMutation.sources.join(', ')}
+          <div className="style-stat" style={{ marginBottom: '4px' }}>
+            <span className="style-stat-label" style={{ fontSize: '8px' }}>Assets:</span>
+            <span className="style-stat-value" style={{ fontSize: '8px' }}>{stats.total}</span>
           </div>
         )}
       </div>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Curated Asset Test</title>
+    <style>
+        body {
+            background: #000;
+            color: #0ff;
+            font-family: monospace;
+            padding: 20px;
+        }
+        .stats {
+            background: #111;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid #0ff;
+        }
+        .asset-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .asset-item {
+            border: 1px solid #0ff;
+            padding: 10px;
+            text-align: center;
+        }
+        .asset-item img {
+            max-width: 100%;
+            height: 150px;
+            object-fit: contain;
+        }
+        .error {
+            color: #ff0000;
+        }
+        .success {
+            color: #00ff00;
+        }
+        .manual-picks {
+            border-color: #ff0;
+            background: #111;
+        }
+        .project-section {
+            margin: 20px 0;
+            border-top: 1px solid #333;
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧬 CHAOS ENGINE - Curated Assets Test</h1>
+    <div id="status">Loading curated manifest...</div>
+    <div id="stats" class="stats"></div>
+    
+    <h2>Manual Picks Drop Zone</h2>
+    <div id="manual-picks" class="asset-grid"></div>
+    
+    <h2>Essential Assets by Project</h2>
+    <div id="essential-assets"></div>
+
+    <script type="module">
+        import CuratedAssetLibrary from '/src/core/CuratedAssetLibrary.js';
+        
+        async function testCuratedAssets() {
+            const statusEl = document.getElementById('status');
+            const statsEl = document.getElementById('stats');
+            const manualPicksEl = document.getElementById('manual-picks');
+            const essentialEl = document.getElementById('essential-assets');
+            
+            try {
+                // Load the curated manifest directly
+                const response = await fetch('/assets-curated/manifest.json');
+                const manifest = await response.json();
+                
+                statusEl.innerHTML = `<span class="success">✓ Curated manifest loaded</span>`;
+                
+                // Display stats
+                statsEl.innerHTML = `
+                    <h3>📊 Curated Asset Statistics</h3>
+                    <p>Total Assets: ${manifest.stats.totalAssets}</p>
+                    <p>Total Size: ${manifest.stats.totalSizeMB}MB (Target: 40MB)</p>
+                    <p>Manual Picks: ${manifest.manualPicks.assets.length}</p>
+                    <h4>By Type:</h4>
+                    ${Object.entries(manifest.stats.byType).map(([type, stats]) => 
+                        `<p>${type}: ${stats.count} files (${(stats.size / 1024 / 1024).toFixed(2)}MB)</p>`
+                    ).join('')}
+                    <h4>By Project:</h4>
+                    ${Object.entries(manifest.stats.byProject).map(([project, stats]) => 
+                        `<p>${project}: ${stats.count} files (${(stats.size / 1024 / 1024).toFixed(2)}MB)</p>`
+                    ).join('')}
+                `;
+                
+                // Display manual picks
+                if (manifest.manualPicks.assets.length === 0) {
+                    manualPicksEl.innerHTML = `
+                        <div class="asset-item manual-picks">
+                            <p>No manual picks yet!</p>
+                            <small>Drop assets in: public/assets-curated/manual-picks/</small>
+                        </div>
+                    `;
+                } else {
+                    manifest.manualPicks.assets.forEach(pick => {
+                        const item = document.createElement('div');
+                        item.className = 'asset-item manual-picks';
+                        item.innerHTML = `
+                            <p>${pick.name}</p>
+                            <small>${pick.type} - ${pick.priority} priority</small>
+                        `;
+                        manualPicksEl.appendChild(item);
+                    });
+                }
+                
+                // Group essentials by project
+                const assetsByProject = {};
+                manifest.essentials.forEach(asset => {
+                    const project = asset.original.split('/')[2];
+                    if (!assetsByProject[project]) {
+                        assetsByProject[project] = [];
+                    }
+                    assetsByProject[project].push(asset);
+                });
+                
+                // Display essential assets by project
+                Object.entries(assetsByProject).forEach(([project, assets]) => {
+                    const section = document.createElement('div');
+                    section.className = 'project-section';
+                    section.innerHTML = `<h3>${project} (${assets.length} assets)</h3>`;
+                    
+                    const grid = document.createElement('div');
+                    grid.className = 'asset-grid';
+                    
+                    assets.forEach(asset => {
+                        const item = document.createElement('div');
+                        item.className = 'asset-item';
+                        
+                        if (asset.type === 'images' && asset.size > 0) {
+                            const img = new Image();
+                            img.src = asset.curated;
+                            
+                            img.onload = () => {
+                                item.innerHTML = `
+                                    <img src="${asset.curated}" alt="${asset.original}">
+                                    <p class="success">✓ ${asset.original.split('/').pop()}</p>
+                                    <small>${(asset.size / 1024).toFixed(1)}KB</small>
+                                `;
+                            };
+                            
+                            img.onerror = () => {
+                                item.innerHTML = `
+                                    <p class="error">✗ ${asset.original.split('/').pop()}</p>
+                                    <small>Failed to load</small>
+                                `;
+                            };
+                        } else if (asset.type === 'audio') {
+                            item.innerHTML = `
+                                <p>🎵 ${asset.original.split('/').pop()}</p>
+                                <small>${(asset.size / 1024).toFixed(1)}KB</small>
+                            `;
+                        } else if (asset.size === 0) {
+                            item.innerHTML = `
+                                <p class="error">⚠️ ${asset.original.split('/').pop()}</p>
+                                <small>Not found in original assets</small>
+                            `;
+                        } else {
+                            item.innerHTML = `
+                                <p>📄 ${asset.original.split('/').pop()}</p>
+                                <small>${asset.type} - ${(asset.size / 1024).toFixed(1)}KB</small>
+                            `;
+                        }
+                        
+                        grid.appendChild(item);
+                    });
+                    
+                    section.appendChild(grid);
+                    essentialEl.appendChild(section);
+                });
+                
+                // Test the CuratedAssetLibrary
+                console.log('Testing CuratedAssetLibrary...');
+                const library = new CuratedAssetLibrary();
+                await library.loadAllAssets();
+                console.log('Library loaded:', library);
+                
+            } catch (error) {
+                statusEl.innerHTML = `<span class="error">✗ Error: ${error.message}</span>`;
+                console.error(error);
+            }
+        }
+        
+        testCuratedAssets();
+    </script>
+</body>
+</html>

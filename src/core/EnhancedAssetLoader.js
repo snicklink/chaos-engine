@@ -237,10 +237,10 @@ class EnhancedAssetLoader {
     // Get images
     const images = this.getDiverseAssets('images', Math.floor(count * 0.6));
     
-    // Filter by theme
+    // Filter by theme - check that asset.name exists
     const themedImages = images.filter(asset => 
       themeConfig.projects.includes(asset.project) ||
-      themeConfig.keywords.some(keyword => asset.name.toLowerCase().includes(keyword))
+      (asset.name && themeConfig.keywords.some(keyword => asset.name.toLowerCase().includes(keyword)))
     );
     
     assets.push(...themedImages);

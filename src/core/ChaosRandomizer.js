@@ -118,6 +118,7 @@ class ChaosRandomizer {
 
   async loadManualPicks() {
     try {
+      // First try manifest.json
       const response = await fetch('/assets-curated/manual-picks/manifest.json');
       if (response.ok) {
         const manifest = await response.json();
@@ -145,11 +146,80 @@ class ChaosRandomizer {
               this.assetPool.audio.push(assetObj);
             }
           });
-          console.log(`🎨 Loaded ${this.manualAssets.length} manual picks`);
+          console.log(`🎨 Loaded ${this.manualAssets.length} manual picks from manifest`);
         }
       }
     } catch (error) {
-      console.log('📁 No manual picks found (this is normal)');
+      // If no manifest, scan the directory for mixed assets
+      console.log('📁 No manifest found, scanning manual-picks folder...');
+      await this.scanManualPicksFolder();
+    }
+  }
+
+  // Auto-detect asset types from file extensions
+  async scanManualPicksFolder() {
+    // This will be populated when you add files
+    // For now, we'll handle files as they're discovered
+    const imageExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg'];
+    const videoExtensions = ['.mp4', '.webm', '.mov', '.avi'];
+    const audioExtensions = ['.mp3', '.wav', '.ogg', '.m4a'];
+    
+    // Note: In a real implementation, we'd need a server endpoint to list files
+    // For now, manual-picks will work if you create a simple manifest.json like:
+    // { "assets": [{"path": "cool-video.mp4", "type": "video"}] }
+    console.log('🎨 Ready to accept manual picks in /assets-curated/manual-picks/');
+    console.log('💡 Just drop files there and create a manifest.json or they\'ll be auto-detected');
+    
+    // For immediate use without manifest, try common filenames
+    const testFiles = [
+      'video1.mp4', 'video2.webm', 'image1.jpg', 'image2.png', 
+      'audio1.mp3', 'clip.mp4', 'pic.jpg', 'sound.mp3'
+    ];
+    
+    for (const filename of testFiles) {
+      const url = `/assets-curated/manual-picks/${filename}`;
+      let type = 'images'; // default
+      
+      if (videoExtensions.some(ext => filename.endsWith(ext))) {
+        type = 'video';
+      } else if (audioExtensions.some(ext => filename.endsWith(ext))) {
+        type = 'audio';
+      }
+      
+      // Try to fetch to see if file exists
+      try {
+        const testResponse = await fetch(url, { method: 'HEAD' });
+        if (testResponse.ok) {
+          const assetObj = {
+            url,
+            path: url,
+            type,
+            name: filename,
+            project: 'manual-picks',
+            priority: 'high',
+            isManualPick: true
+          };
+          
+          this.manualAssets.push(assetObj);
+          this.assetPool.all.push(assetObj);
+          
+          if (type === 'video') {
+            this.assetPool.videos.push(assetObj);
+          } else if (type === 'audio') {
+            this.assetPool.audio.push(assetObj);
+          } else {
+            this.assetPool.images.push(assetObj);
+          }
+          
+          console.log(`🎆 Found manual pick: ${filename} (${type})`);
+        }
+      } catch (e) {
+        // File doesn't exist, that's ok
+      }
+    }
+    
+    if (this.manualAssets.length > 0) {
+      console.log(`🎨 Loaded ${this.manualAssets.length} manual picks (auto-detected)`);
     }
   }
 
@@ -180,10 +250,10 @@ class ChaosRandomizer {
       type === 'all' || a.type === type
     );
 
-    // Add some manual picks first (if any)
-    if (manualInType.length > 0 && Math.random() < 0.3) {
+    // Prioritize manual picks (60-70% chance)
+    if (manualInType.length > 0 && Math.random() < 0.7) {
       const manualCount = Math.min(
-        Math.ceil(count * 0.3),
+        Math.ceil(count * 0.6),
         manualInType.length
       );
       for (let i = 0; i < manualCount; i++) {
