@@ -1,29 +1,513 @@
 {
   "version": "1.0.0",
-  "generated": "2025-08-06T00:48:33.854Z",
+  "generated": "2025-08-06T00:54:20.418Z",
   "stats": {
-    "totalAssets": 53,
-    "totalSize": 16406871,
+    "totalAssets": 115,
+    "totalSize": 40695865,
     "byType": {
+      "other": {
+        "count": 4,
+        "size": 62691
+      },
       "images": {
-        "count": 48,
-        "size": 13751957
+        "count": 82,
+        "size": 14234625
       },
       "audio": {
-        "count": 4,
-        "size": 2651821
+        "count": 18,
+        "size": 12924517
+      },
+      "video": {
+        "count": 10,
+        "size": 13465999
       },
       "data": {
         "count": 1,
-        "size": 3093
+        "size": 8033
       }
     },
-    "byProject": {},
-    "totalSizeMB": "15.65"
+    "byProject": {
+      "core": {
+        "count": 2,
+        "size": 29715
+      },
+      "blobtv": {
+        "count": 3,
+        "size": 98838
+      },
+      "derpaket": {
+        "count": 2,
+        "size": 38212
+      },
+      "ikigaii": {
+        "count": 1,
+        "size": 31546
+      },
+      "miami-voice": {
+        "count": 11,
+        "size": 212066
+      },
+      "neo-neukoelln": {
+        "count": 19,
+        "size": 1109734
+      },
+      "rosebud": {
+        "count": 5,
+        "size": 5131741
+      },
+      "royal-rumble": {
+        "count": 2,
+        "size": 32960
+      },
+      "vibegame-site": {
+        "count": 2,
+        "size": 113878
+      },
+      "vibetales": {
+        "count": 15,
+        "size": 17485364
+      }
+    },
+    "totalSizeMB": "38.81"
   },
-  "essentials": [],
+  "essentials": [
+    {
+      "name": ".DS_Store",
+      "path": "essentials/.DS_Store",
+      "type": "other",
+      "size": 6148,
+      "project": "core"
+    },
+    {
+      "name": "SimWilly_sm.webp",
+      "path": "essentials/blobtv/images/SimWilly_sm.webp",
+      "type": "images",
+      "size": 4224,
+      "project": "blobtv"
+    },
+    {
+      "name": "blobtv_logo.webp",
+      "path": "essentials/blobtv/images/blobtv_logo.webp",
+      "type": "images",
+      "size": 20246,
+      "project": "blobtv"
+    },
+    {
+      "name": "offline.webp",
+      "path": "essentials/blobtv/images/offline.webp",
+      "type": "images",
+      "size": 74368,
+      "project": "blobtv"
+    },
+    {
+      "name": "chaos-manifest.json",
+      "path": "essentials/chaos-manifest.json",
+      "type": "other",
+      "size": 23567,
+      "project": "core"
+    },
+    {
+      "name": "DerPaket_logo.webp",
+      "path": "essentials/derpaket/images/DerPaket_logo.webp",
+      "type": "images",
+      "size": 13298,
+      "project": "derpaket"
+    },
+    {
+      "name": "snicklink-logo.webp",
+      "path": "essentials/derpaket/images/snicklink-logo.webp",
+      "type": "images",
+      "size": 24914,
+      "project": "derpaket"
+    },
+    {
+      "name": "logo.webp",
+      "path": "essentials/ikigaii/images/logo.webp",
+      "type": "images",
+      "size": 31546,
+      "project": "ikigaii"
+    },
+    {
+      "name": "disco.mp3",
+      "path": "essentials/miami-voice/audio/disco.mp3",
+      "type": "audio",
+      "size": 10494,
+      "project": "miami-voice"
+    },
+    {
+      "name": "miami.mp3",
+      "path": "essentials/miami-voice/audio/miami.mp3",
+      "type": "audio",
+      "size": 123058,
+      "project": "miami-voice"
+    },
+    {
+      "name": "weee.mp3",
+      "path": "essentials/miami-voice/audio/weee.mp3",
+      "type": "audio",
+      "size": 12246,
+      "project": "miami-voice"
+    },
+    {
+      "name": "chrome.webp",
+      "path": "essentials/miami-voice/images/chrome.webp",
+      "type": "images",
+      "size": 2580,
+      "project": "miami-voice"
+    },
+    {
+      "name": "cocktail.webp",
+      "path": "essentials/miami-voice/images/cocktail.webp",
+      "type": "images",
+      "size": 2864,
+      "project": "miami-voice"
+    },
+    {
+      "name": "heli.webp",
+      "path": "essentials/miami-voice/images/heli.webp",
+      "type": "images",
+      "size": 7778,
+      "project": "miami-voice"
+    },
+    {
+      "name": "logo.webp",
+      "path": "essentials/miami-voice/images/logo.webp",
+      "type": "images",
+      "size": 20006,
+      "project": "miami-voice"
+    },
+    {
+      "name": "palm.webp",
+      "path": "essentials/miami-voice/images/palm.webp",
+      "type": "images",
+      "size": 4018,
+      "project": "miami-voice"
+    },
+    {
+      "name": "skyline.webp",
+      "path": "essentials/miami-voice/images/skyline.webp",
+      "type": "images",
+      "size": 3534,
+      "project": "miami-voice"
+    },
+    {
+      "name": "sun.svg",
+      "path": "essentials/miami-voice/images/sun.svg",
+      "type": "other",
+      "size": 24780,
+      "project": "miami-voice"
+    },
+    {
+      "name": "tico.webp",
+      "path": "essentials/miami-voice/images/tico.webp",
+      "type": "images",
+      "size": 708,
+      "project": "miami-voice"
+    },
+    {
+      "name": "gametheme.mp3",
+      "path": "essentials/neo-neukoelln/audio/gametheme.mp3",
+      "type": "audio",
+      "size": 639424,
+      "project": "neo-neukoelln"
+    },
+    {
+      "name": "techno.mp3",
+      "path": "essentials/neo-neukoelln/audio/techno.mp3",
+      "type": "audio",
+      "size": 364672,
+      "project": "neo-neukoelln"
+    },
+    {
+      "name": "aggressive_pigeon.webp",
+      "path": "essentials/neo-neukoelln/images/aggressive_pigeon.webp",
+      "type": "images",
+      "size": 3192,
+      "project": "neo-neukoelln"
+    },
+    {
+      "name": "brandenburg_gate.webp",
+      "path": "essentials/neo-neukoelln/images/brandenburg_gate.webp",
+      "type": "images",
+      "size": 6832,
+      "project": "neo-neukoelln"
+    },
+    {
+      "name": "bvg_ticket.webp",
+      "path": "essentials/neo-neukoelln/images/bvg_ticket.webp",
+      "type": "images",
+      "size": 1586,
+      "project": "neo-neukoelln"
+    },
+    {
+      "name": "currywurst.webp",
+      "path": "essentials/neo-neukoelln/images/currywurst.webp",
+      "type": "images",
+      "size": 3806,
+      "project": "neo-neukoelln"
+    },
+    {
+      "name": "doener_dealer.webp",
+      "path": "essentials/neo-neukoelln/images/doener_dealer.webp",
+      "type": "images",
+      "size": 98,
+      "project": "neo-neukoelln"
+    },
+    {
+      "name": "doener_kebap.webp",
+      "path": "essentials/neo-neukoelln/images/doener_kebap.webp",
+      "type": "images",
+      "size": 3806,
+      "project": "neo-neukoelln"
+    },
+    {
+      "name": "doenerbude.webp",
+      "path": "essentials/neo-neukoelln/images/doenerbude.webp",
+      "type": "images",
+      "size": 2610,
+      "project": "neo-neukoelln"
+    },
+    {
+      "name": "gamelogo.webp",
+      "path": "essentials/neo-neukoelln/images/gamelogo.webp",
+      "type": "images",
+      "size": 24464,
+      "project": "neo-neukoelln"
+    },
+    {
+      "name": "giant_rat.webp",
+      "path": "essentials/neo-neukoelln/images/giant_rat.webp",
+      "type": "images",
+      "size": 3564,
+      "project": "neo-neukoelln"
+    },
+    {
+      "name": "hipster.webp",
+      "path": "essentials/neo-neukoelln/images/hipster.webp",
+      "type": "images",
+      "size": 17494,
+      "project": "neo-neukoelln"
+    },
+    {
+      "name": "mutumbo.webp",
+      "path": "essentials/neo-neukoelln/images/mutumbo.webp",
+      "type": "images",
+      "size": 11542,
+      "project": "neo-neukoelln"
+    },
+    {
+      "name": "shisha_lounge.webp",
+      "path": "essentials/neo-neukoelln/images/shisha_lounge.webp",
+      "type": "images",
+      "size": 2520,
+      "project": "neo-neukoelln"
+    },
+    {
+      "name": "sidewalk.webp",
+      "path": "essentials/neo-neukoelln/images/sidewalk.webp",
+      "type": "images",
+      "size": 160,
+      "project": "neo-neukoelln"
+    },
+    {
+      "name": "spaeti.webp",
+      "path": "essentials/neo-neukoelln/images/spaeti.webp",
+      "type": "images",
+      "size": 3112,
+      "project": "neo-neukoelln"
+    },
+    {
+      "name": "street_artist.webp",
+      "path": "essentials/neo-neukoelln/images/street_artist.webp",
+      "type": "images",
+      "size": 98,
+      "project": "neo-neukoelln"
+    },
+    {
+      "name": "techno_girl.webp",
+      "path": "essentials/neo-neukoelln/images/techno_girl.webp",
+      "type": "images",
+      "size": 18734,
+      "project": "neo-neukoelln"
+    },
+    {
+      "name": "ubahn1.webp",
+      "path": "essentials/neo-neukoelln/images/ubahn1.webp",
+      "type": "images",
+      "size": 2020,
+      "project": "neo-neukoelln"
+    },
+    {
+      "name": "Die Willy Theme.mp3",
+      "path": "essentials/rosebud/audio/Die Willy Theme.mp3",
+      "type": "audio",
+      "size": 3303454,
+      "project": "rosebud"
+    },
+    {
+      "name": "Willy im Hyperflow.mp3",
+      "path": "essentials/rosebud/audio/Willy im Hyperflow.mp3",
+      "type": "audio",
+      "size": 1638430,
+      "project": "rosebud"
+    },
+    {
+      "name": "blips.mp3",
+      "path": "essentials/rosebud/audio/blips.mp3",
+      "type": "audio",
+      "size": 48946,
+      "project": "rosebud"
+    },
+    {
+      "name": "computer.mp3",
+      "path": "essentials/rosebud/audio/computer.mp3",
+      "type": "audio",
+      "size": 97429,
+      "project": "rosebud"
+    },
+    {
+      "name": "snicklink_logo copy.webp",
+      "path": "essentials/rosebud/images/snicklink_logo copy.webp",
+      "type": "images",
+      "size": 43482,
+      "project": "rosebud"
+    },
+    {
+      "name": "kick.mp3",
+      "path": "essentials/royal-rumble/audio/kick.mp3",
+      "type": "audio",
+      "size": 19072,
+      "project": "royal-rumble"
+    },
+    {
+      "name": "punch.mp3",
+      "path": "essentials/royal-rumble/audio/punch.mp3",
+      "type": "audio",
+      "size": 13888,
+      "project": "royal-rumble"
+    },
+    {
+      "name": "simwilly.webp",
+      "path": "essentials/vibegame-site/images/simwilly.webp",
+      "type": "images",
+      "size": 102100,
+      "project": "vibegame-site"
+    },
+    {
+      "name": "snick_vibe_logo.webp",
+      "path": "essentials/vibegame-site/images/snick_vibe_logo.webp",
+      "type": "images",
+      "size": 11778,
+      "project": "vibegame-site"
+    },
+    {
+      "name": ".DS_Store",
+      "path": "essentials/vibetales/.DS_Store",
+      "type": "other",
+      "size": 8196,
+      "project": "vibetales"
+    },
+    {
+      "name": "beat1.mp3",
+      "path": "essentials/vibetales/audio/beat1.mp3",
+      "type": "audio",
+      "size": 339300,
+      "project": "vibetales"
+    },
+    {
+      "name": "electro.mp3",
+      "path": "essentials/vibetales/audio/electro.mp3",
+      "type": "audio",
+      "size": 3579610,
+      "project": "vibetales"
+    },
+    {
+      "name": "jingle1.mp3",
+      "path": "essentials/vibetales/audio/jingle1.mp3",
+      "type": "audio",
+      "size": 82673,
+      "project": "vibetales"
+    },
+    {
+      "name": "blobtv_logo.webp",
+      "path": "essentials/vibetales/images/blobtv_logo.webp",
+      "type": "images",
+      "size": 9586,
+      "project": "vibetales"
+    },
+    {
+      "name": "GehWeidaRoboter2.mp4",
+      "path": "essentials/vibetales/video/GehWeidaRoboter2.mp4",
+      "type": "video",
+      "size": 789901,
+      "project": "vibetales"
+    },
+    {
+      "name": "alex_states.webm",
+      "path": "essentials/vibetales/video/alex_states.webm",
+      "type": "video",
+      "size": 339764,
+      "project": "vibetales"
+    },
+    {
+      "name": "boehmi_states.webm",
+      "path": "essentials/vibetales/video/boehmi_states.webm",
+      "type": "video",
+      "size": 269653,
+      "project": "vibetales"
+    },
+    {
+      "name": "georg_states.webm",
+      "path": "essentials/vibetales/video/georg_states.webm",
+      "type": "video",
+      "size": 268585,
+      "project": "vibetales"
+    },
+    {
+      "name": "jordan_states.webm",
+      "path": "essentials/vibetales/video/jordan_states.webm",
+      "type": "video",
+      "size": 377407,
+      "project": "vibetales"
+    },
+    {
+      "name": "kannz_states.webm",
+      "path": "essentials/vibetales/video/kannz_states.webm",
+      "type": "video",
+      "size": 325868,
+      "project": "vibetales"
+    },
+    {
+      "name": "klaro_states.webm",
+      "path": "essentials/vibetales/video/klaro_states.webm",
+      "type": "video",
+      "size": 356345,
+      "project": "vibetales"
+    },
+    {
+      "name": "memenews_states.webm",
+      "path": "essentials/vibetales/video/memenews_states.webm",
+      "type": "video",
+      "size": 384387,
+      "project": "vibetales"
+    },
+    {
+      "name": "milly_states.webm",
+      "path": "essentials/vibetales/video/milly_states.webm",
+      "type": "video",
+      "size": 5206625,
+      "project": "vibetales"
+    },
+    {
+      "name": "troy_states.webm",
+      "path": "essentials/vibetales/video/troy_states.webm",
+      "type": "video",
+      "size": 5147464,
+      "project": "vibetales"
+    }
+  ],
   "manualPicks": {
-    "timestamp": "2025-08-06T00:48:33.851Z",
+    "timestamp": "2025-08-06T00:53:24.269Z",
     "assets": [
       {
         "name": "1itoun.jpg",
@@ -253,7 +737,7 @@
         "name": "manifest.json",
         "path": "manifest.json",
         "type": "data",
-        "size": 3093,
+        "size": 8033,
         "priority": "high"
       },
       {

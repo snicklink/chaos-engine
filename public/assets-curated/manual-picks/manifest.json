@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-08-06T00:48:33.851Z",
+  "timestamp": "2025-08-06T00:53:24.269Z",
   "assets": [
     {
       "name": "1itoun.jpg",
@@ -229,7 +229,7 @@
       "name": "manifest.json",
       "path": "manifest.json",
       "type": "data",
-      "size": 3093,
+      "size": 8033,
       "priority": "high"
     },
     {
