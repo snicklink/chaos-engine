@@ -93,8 +93,9 @@ export function mapAssetPath(originalPath) {
   return originalPath;
 }
 
-// Install global interceptor for image loading
+// Install global interceptors for asset loading
 if (typeof window !== 'undefined') {
+  // Intercept Image.src
   const originalImageSrc = Object.getOwnPropertyDescriptor(HTMLImageElement.prototype, 'src');
   Object.defineProperty(HTMLImageElement.prototype, 'src', {
     set: function(value) {
@@ -105,4 +106,14 @@ if (typeof window !== 'undefined') {
       return originalImageSrc.get.call(this);
     }
   });
+  
+  // Intercept fetch requests
+  const originalFetch = window.fetch;
+  window.fetch = function(url, ...args) {
+    const mappedUrl = typeof url === 'string' ? mapAssetPath(url) : url;
+    return originalFetch.call(this, mappedUrl, ...args);
+  };
+  
+  // Log mapper activation
+  console.log('🗺️ Asset path mapper activated - redirecting /assets/ to /assets-curated/');
 }

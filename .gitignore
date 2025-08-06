@@ -88,3 +88,4 @@ localtunnel.log
 
 # Test files
 test-*.html/public/assets-curated/manual-picks/manual-assets-large/
+.vercel

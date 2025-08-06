@@ -83,22 +83,22 @@ class AssetPreloader {
       video: []
     };
     
-    // Pre-select guaranteed working assets (verified paths only)
+    // Use actual curated asset paths
     const guaranteedAssets = [
-      '/assets/neo-neukoelln/images/mutumbo.png',
-      '/assets/neo-neukoelln/images/doener_kebap.webp',
-      '/assets/neo-neukoelln/images/hipster.png',
-      '/assets/neo-neukoelln/images/techno_girl.png',
-      '/assets/miami-voice/images/tico.png',
-      '/assets/miami-voice/images/palm.png',
-      '/assets/blobtv/images/blobtv_logo.png',
-      '/assets/derpaket/images/DerPaket_logo.png',
-      '/assets/ikigaii/images/logo.png',
-      '/assets/neo-neukoelln/images/gamelogo.png',
-      '/assets/miami-voice/images/heli.png',
-      '/assets/miami-voice/images/cocktail.png',
-      '/assets/neo-neukoelln/images/aggressive_pigeon.png',
-      '/assets/vibegame-site/images/simwilly.jpg'
+      '/assets-curated/essentials/neo-neukoelln/images/mutumbo.webp',
+      '/assets-curated/essentials/neo-neukoelln/images/doener_kebap.webp',
+      '/assets-curated/essentials/neo-neukoelln/images/hipster.webp',
+      '/assets-curated/essentials/neo-neukoelln/images/techno_girl.webp',
+      '/assets-curated/essentials/miami-voice/images/tico.webp',
+      '/assets-curated/essentials/miami-voice/images/palm.webp',
+      '/assets-curated/essentials/blobtv/images/blobtv_logo.webp',
+      '/assets-curated/essentials/derpaket/images/DerPaket_logo.webp',
+      '/assets-curated/essentials/ikigaii/images/logo.webp',
+      '/assets-curated/essentials/neo-neukoelln/images/gamelogo.webp',
+      '/assets-curated/essentials/miami-voice/images/heli.webp',
+      '/assets-curated/essentials/miami-voice/images/cocktail.webp',
+      '/assets-curated/essentials/neo-neukoelln/images/aggressive_pigeon.webp',
+      '/assets-curated/essentials/vibegame-site/images/simwilly.webp'
     ].filter(path => !path.includes('//') && !path.includes('vite.svg'));
     
     guaranteedAssets.forEach(path => {
@@ -135,14 +135,14 @@ class AssetPreloader {
     
     // Curated selection for sophisticated modes
     const sophisticatedAssets = [
-      '/assets/ikigaii/images/logo.png',
-      '/assets/blobtv/images/blobtv_logo.png',
-      '/assets/derpaket/images/DerPaket_logo.png',
-      '/assets/neo-neukoelln/images/gamelogo.png',
-      '/assets/miami-voice/images/logo.png',
-      '/assets/neo-neukoelln/images/mutumbo.png',
-      '/assets/miami-voice/images/tico.png',
-      '/assets/vibegame-site/images/simwilly.jpg'
+      '/assets-curated/essentials/ikigaii/images/logo.webp',
+      '/assets-curated/essentials/blobtv/images/blobtv_logo.webp',
+      '/assets-curated/essentials/derpaket/images/DerPaket_logo.webp',
+      '/assets-curated/essentials/neo-neukoelln/images/gamelogo.webp',
+      '/assets-curated/essentials/miami-voice/images/logo.webp',
+      '/assets-curated/essentials/neo-neukoelln/images/mutumbo.webp',
+      '/assets-curated/essentials/miami-voice/images/tico.webp',
+      '/assets-curated/essentials/vibegame-site/images/simwilly.webp'
     ];
     
     sophisticatedAssets.forEach(path => {
