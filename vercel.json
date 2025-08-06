@@ -6,6 +6,10 @@
   "framework": "vite",
   "rewrites": [
     {
+      "source": "/assets/:path*",
+      "destination": "/assets-curated/essentials/:path*"
+    },
+    {
       "source": "/(.*)",
       "destination": "/"
     }

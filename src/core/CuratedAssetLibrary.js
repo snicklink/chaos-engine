@@ -90,14 +90,10 @@ class CuratedAssetLibrary {
     
     // Process each essential asset from manifest
     for (const essential of this.manifest.essentials) {
-      // Extract project from path (e.g., /assets/neo-neukoelln/images/... -> neo-neukoelln)
-      const pathParts = essential.original.split('/');
-      const project = pathParts[2]; // /assets/[project]/...
-      const assetName = pathParts[pathParts.length - 1];
-      
+      const project = essential.project || 'core';
       const asset = {
-        name: assetName,
-        path: essential.curated, // Use the curated path from manifest
+        name: essential.name,
+        path: `${this.assetBasePath}/${essential.path}`, // Full path to curated asset
         type: essential.type,
         project: project,
         size: essential.size,
@@ -119,7 +115,7 @@ class CuratedAssetLibrary {
       }
       
       // Add to collections
-      this.assets[essential.type][project].push(assetName);
+      this.assets[essential.type][project].push(essential.name);
       this.allAssets.push(asset);
       this.assetsByProject[project].push(asset);
       this.assetsByType[essential.type].push(asset);
