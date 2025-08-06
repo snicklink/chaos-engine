@@ -1,55 +1,376 @@
 {
+  "timestamp": "2025-08-06T00:48:33.851Z",
   "assets": [
-    {"path": "Miamivoice_compressed.jpg", "type": "images", "priority": "high"},
-    {"path": "chemtrail_hq_compressed.jpg", "type": "images", "priority": "high"},
-    {"path": "b_bomber1_compressed.jpg", "type": "images", "priority": "high"},
-    {"path": "big_bratwurst7_compressed.jpg", "type": "images", "priority": "high"},
-    {"path": "20241110_133630_result_a248e387-ce47-4974-94d6-f10ea0f99677_compressed.jpg", "type": "images"},
-    {"path": "Willy_6_sm_compressed.jpg", "type": "images", "priority": "high"},
-    {"path": "blue_willy_cover copy_compressed.jpg", "type": "images"},
-    {"path": "neue_willy_video_compressed.jpg", "type": "images"},
-    {"path": "screen1_compressed.jpg", "type": "images"},
-    {"path": "Screenshot 2025-06-17 at 14.52.23_compressed.jpg", "type": "images"},
-    {"path": "damn_shirt_shopify_compressed.jpg", "type": "images"},
-    {"path": "58eyvu_compressed.jpg", "type": "images"},
-    {"path": "miamivoice-yt-th_compressed.jpg", "type": "images"},
-    {"path": "vt_compressed.jpg", "type": "images"},
-    {"path": "robbie1_compressed.jpg", "type": "images"},
-    {"path": "bg1_compressed.jpg", "type": "images"},
-    {"path": "simwilly_compressed.jpg", "type": "images", "priority": "high"},
-    {"path": "mogen_logo_w_compressed.jpg", "type": "images"},
-    {"path": "i_survived_th_compressed.jpg", "type": "images"},
-    {"path": "infogifttrunk_compressed.jpg", "type": "images"},
-    {"path": "test-copy_compressed.jpg", "type": "images"},
-    {"path": "btv_compressed.jpg", "type": "images"},
-    {"path": "bratwurst_compressed.jpg", "type": "images", "priority": "high"},
-    {"path": "chems_compressed.jpg", "type": "images"},
-    {"path": "willy7jpg_compressed.jpg", "type": "images"},
-    {"path": "agency-preview_compressed.jpg", "type": "images"},
-    {"path": "1itoun.jpg", "type": "images"},
-    {"path": "2siu6l.jpg", "type": "images"},
-    {"path": "GarvbjwWwAEFjWM.jpeg", "type": "images"},
-    {"path": "blackrock.jpg", "type": "images"},
-    {"path": "kanzler.jpg", "type": "images"},
-    {"path": "mutation2.jpg", "type": "images"},
-    {"path": "frame-000008.png", "type": "images"},
-    {"path": "frame-000007.png", "type": "images"},
-    {"path": "toucan_new.png", "type": "images"},
-    {"path": "ferrari2.png", "type": "images"},
-    {"path": "logo.png", "type": "images"},
-    {"path": "gamelogo.webp", "type": "images"},
-    {"path": "snick_vibe_logo.png", "type": "images"},
-    {"path": "snicklink_profile.jpg", "type": "images"},
-    {"path": "lambo2.png", "type": "images"},
-    {"path": "mogen_new1_copy.jpg", "type": "images"},
-    {"path": "soldier.png", "type": "images"},
-    {"path": "hill.png", "type": "images"},
-    {"path": "social.png", "type": "images"},
-    {"path": "memes_2024_shirt.jpg", "type": "images"},
-    {"path": "menschblob.jpg", "type": "images"},
-    {"path": "radwege.jpg", "type": "images"},
-    {"path": "bereit.mp3", "type": "audio", "priority": "high"},
-    {"path": "gametheme1.mp3", "type": "audio", "priority": "high"},
-    {"path": "pizza.mp3", "type": "audio"}
+    {
+      "name": "1itoun.jpg",
+      "path": "1itoun.jpg",
+      "type": "images",
+      "size": 130870,
+      "priority": "high"
+    },
+    {
+      "name": "20241110_133630_result_a248e387-ce47-4974-94d6-f10ea0f99677.jpg",
+      "path": "20241110_133630_result_a248e387-ce47-4974-94d6-f10ea0f99677.jpg",
+      "type": "images",
+      "size": 2100841,
+      "priority": "high"
+    },
+    {
+      "name": "2siu6l.jpg",
+      "path": "2siu6l.jpg",
+      "type": "images",
+      "size": 48156,
+      "priority": "high"
+    },
+    {
+      "name": "58eyvu.jpg",
+      "path": "58eyvu.jpg",
+      "type": "images",
+      "size": 54913,
+      "priority": "high"
+    },
+    {
+      "name": "58eyvu.webp",
+      "path": "58eyvu.webp",
+      "type": "images",
+      "size": 389066,
+      "priority": "high"
+    },
+    {
+      "name": "GarvbjwWwAEFjWM.jpeg",
+      "path": "GarvbjwWwAEFjWM.jpeg",
+      "type": "images",
+      "size": 102603,
+      "priority": "high"
+    },
+    {
+      "name": "Miamivoice.jpg",
+      "path": "Miamivoice.jpg",
+      "type": "images",
+      "size": 101964,
+      "priority": "high"
+    },
+    {
+      "name": "Screenshot 2025-06-17 at 14.52.23.jpg",
+      "path": "Screenshot 2025-06-17 at 14.52.23.jpg",
+      "type": "images",
+      "size": 57698,
+      "priority": "high"
+    },
+    {
+      "name": "Willy_6_sm.jpg",
+      "path": "Willy_6_sm.jpg",
+      "type": "images",
+      "size": 1579542,
+      "priority": "high"
+    },
+    {
+      "name": "agency-preview.jpg",
+      "path": "agency-preview.jpg",
+      "type": "images",
+      "size": 231998,
+      "priority": "high"
+    },
+    {
+      "name": "b_bomber1.jpg",
+      "path": "b_bomber1.jpg",
+      "type": "images",
+      "size": 131369,
+      "priority": "high"
+    },
+    {
+      "name": "bereit.mp3",
+      "path": "bereit.mp3",
+      "type": "audio",
+      "size": 496864,
+      "priority": "high"
+    },
+    {
+      "name": "bg1.jpg",
+      "path": "bg1.jpg",
+      "type": "images",
+      "size": 309333,
+      "priority": "high"
+    },
+    {
+      "name": "big_bratwurst7.jpg",
+      "path": "big_bratwurst7.jpg",
+      "type": "images",
+      "size": 116304,
+      "priority": "high"
+    },
+    {
+      "name": "blackrock.jpg",
+      "path": "blackrock.jpg",
+      "type": "images",
+      "size": 193233,
+      "priority": "high"
+    },
+    {
+      "name": "blue_willy_cover copy.jpg",
+      "path": "blue_willy_cover copy.jpg",
+      "type": "images",
+      "size": 803992,
+      "priority": "high"
+    },
+    {
+      "name": "bratwurst.jpg",
+      "path": "bratwurst.jpg",
+      "type": "images",
+      "size": 254006,
+      "priority": "high"
+    },
+    {
+      "name": "btv.jpg",
+      "path": "btv.jpg",
+      "type": "images",
+      "size": 254410,
+      "priority": "high"
+    },
+    {
+      "name": "chems.jpg",
+      "path": "chems.jpg",
+      "type": "images",
+      "size": 243453,
+      "priority": "high"
+    },
+    {
+      "name": "chemtrail_hq.jpg",
+      "path": "chemtrail_hq.jpg",
+      "type": "images",
+      "size": 122133,
+      "priority": "high"
+    },
+    {
+      "name": "damn_shirt_shopify.jpg",
+      "path": "damn_shirt_shopify.jpg",
+      "type": "images",
+      "size": 472342,
+      "priority": "high"
+    },
+    {
+      "name": "ferrari2.jpg",
+      "path": "ferrari2.jpg",
+      "type": "images",
+      "size": 27833,
+      "priority": "high"
+    },
+    {
+      "name": "frame-000007.jpg",
+      "path": "frame-000007.jpg",
+      "type": "images",
+      "size": 45035,
+      "priority": "high"
+    },
+    {
+      "name": "frame-000008.jpg",
+      "path": "frame-000008.jpg",
+      "type": "images",
+      "size": 53731,
+      "priority": "high"
+    },
+    {
+      "name": "gamelogo.webp",
+      "path": "gamelogo.webp",
+      "type": "images",
+      "size": 46892,
+      "priority": "high"
+    },
+    {
+      "name": "gametheme1.mp3",
+      "path": "gametheme1.mp3",
+      "type": "audio",
+      "size": 793621,
+      "priority": "high"
+    },
+    {
+      "name": "hill.jpg",
+      "path": "hill.jpg",
+      "type": "images",
+      "size": 41635,
+      "priority": "high"
+    },
+    {
+      "name": "i_survived_th.jpg",
+      "path": "i_survived_th.jpg",
+      "type": "images",
+      "size": 278235,
+      "priority": "high"
+    },
+    {
+      "name": "infogifttrunk.jpg",
+      "path": "infogifttrunk.jpg",
+      "type": "images",
+      "size": 264685,
+      "priority": "high"
+    },
+    {
+      "name": "kanzler.jpg",
+      "path": "kanzler.jpg",
+      "type": "images",
+      "size": 162988,
+      "priority": "high"
+    },
+    {
+      "name": "lambo2.jpg",
+      "path": "lambo2.jpg",
+      "type": "images",
+      "size": 34398,
+      "priority": "high"
+    },
+    {
+      "name": "logo.jpg",
+      "path": "logo.jpg",
+      "type": "images",
+      "size": 57824,
+      "priority": "high"
+    },
+    {
+      "name": "manifest.json",
+      "path": "manifest.json",
+      "type": "data",
+      "size": 3093,
+      "priority": "high"
+    },
+    {
+      "name": "memes_2024_shirt copy.jpg",
+      "path": "memes_2024_shirt copy.jpg",
+      "type": "images",
+      "size": 2305741,
+      "priority": "high"
+    },
+    {
+      "name": "menschblob copy.jpg",
+      "path": "menschblob copy.jpg",
+      "type": "images",
+      "size": 47148,
+      "priority": "high"
+    },
+    {
+      "name": "miamivoice-yt-th.jpg",
+      "path": "miamivoice-yt-th.jpg",
+      "type": "images",
+      "size": 383992,
+      "priority": "high"
+    },
+    {
+      "name": "mogen_logo_w.jpg",
+      "path": "mogen_logo_w.jpg",
+      "type": "images",
+      "size": 31706,
+      "priority": "high"
+    },
+    {
+      "name": "mogen_new1_copy.jpg",
+      "path": "mogen_new1_copy.jpg",
+      "type": "images",
+      "size": 33357,
+      "priority": "high"
+    },
+    {
+      "name": "mutation2.jpg",
+      "path": "mutation2.jpg",
+      "type": "images",
+      "size": 147090,
+      "priority": "high"
+    },
+    {
+      "name": "neue_willy_video.jpg",
+      "path": "neue_willy_video.jpg",
+      "type": "images",
+      "size": 39138,
+      "priority": "high"
+    },
+    {
+      "name": "pizza.mp3",
+      "path": "pizza.mp3",
+      "type": "audio",
+      "size": 172743,
+      "priority": "high"
+    },
+    {
+      "name": "radwege in peru4.mp3",
+      "path": "radwege in peru4.mp3",
+      "type": "audio",
+      "size": 1188593,
+      "priority": "high"
+    },
+    {
+      "name": "robbie1.jpg",
+      "path": "robbie1.jpg",
+      "type": "images",
+      "size": 35477,
+      "priority": "high"
+    },
+    {
+      "name": "screen1.jpg",
+      "path": "screen1.jpg",
+      "type": "images",
+      "size": 594968,
+      "priority": "high"
+    },
+    {
+      "name": "simwilly.jpg",
+      "path": "simwilly.jpg",
+      "type": "images",
+      "size": 308760,
+      "priority": "high"
+    },
+    {
+      "name": "snick_vibe_logo.jpg",
+      "path": "snick_vibe_logo.jpg",
+      "type": "images",
+      "size": 22717,
+      "priority": "high"
+    },
+    {
+      "name": "snicklink_profile.jpg",
+      "path": "snicklink_profile.jpg",
+      "type": "images",
+      "size": 37729,
+      "priority": "high"
+    },
+    {
+      "name": "social.jpg",
+      "path": "social.jpg",
+      "type": "images",
+      "size": 84442,
+      "priority": "high"
+    },
+    {
+      "name": "soldier.jpg",
+      "path": "soldier.jpg",
+      "type": "images",
+      "size": 83431,
+      "priority": "high"
+    },
+    {
+      "name": "test-copy.jpg",
+      "path": "test-copy.jpg",
+      "type": "images",
+      "size": 254006,
+      "priority": "high"
+    },
+    {
+      "name": "toucan_new.jpg",
+      "path": "toucan_new.jpg",
+      "type": "images",
+      "size": 32521,
+      "priority": "high"
+    },
+    {
+      "name": "vt.jpg",
+      "path": "vt.jpg",
+      "type": "images",
+      "size": 365856,
+      "priority": "high"
+    },
+    {
+      "name": "willy7jpg.jpg",
+      "path": "willy7jpg.jpg",
+      "type": "images",
+      "size": 232396,
+      "priority": "high"
+    }
   ]
 }

@@ -11,8 +11,8 @@ const ParticleSwarmIntelligence = ({ assetLibrary, phase, intensity, assets }) =
   const [swarmBehavior, setSwarmBehavior] = useState('flock');
   const [emergentPattern, setEmergentPattern] = useState('none');
 
-  // Particle system parameters - MORE PARTICLES!
-  const MAX_PARTICLES = 1000 + Math.floor(intensity * 2000); // Min 1000 particles
+  // Particle system parameters - OPTIMIZED FOR PERFORMANCE
+  const MAX_PARTICLES = Math.min(500, 200 + Math.floor(intensity * 300)); // Cap at 500 for performance
   const PARTICLE_SPEED = 1 + intensity * 3;
   const PERCEPTION_RADIUS = 30 + intensity * 50;
   const SEPARATION_FORCE = 0.5 + intensity * 1.5;

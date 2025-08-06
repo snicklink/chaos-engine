@@ -23,7 +23,7 @@ const GlitchPanopticon = ({ assetLibrary, phase, intensity, assets }) => {
 
   // Get assets for glitching - emphasize videos and dynamic content
   const getGlitchableAssets = useCallback(() => {
-    const assetCount = 30 + Math.floor(intensity * 40);
+    const assetCount = Math.min(25, 10 + Math.floor(intensity * 15)); // Cap at 25
     
     // Get lots of images and videos for glitching
     const images = EnhancedAssetLoader.getDiverseAssets('images', Math.floor(assetCount * 0.6));

@@ -13,7 +13,7 @@ const FluidDistortionField = ({ assetLibrary, phase, intensity, assets }) => {
   // Get diverse assets for distortion
   const getRandomAssets = useCallback(() => {
     // Use Enhanced Asset Loader for proper diversity
-    const assetCount = 20 + Math.floor(intensity * 30);
+    const assetCount = Math.min(20, 8 + Math.floor(intensity * 12)); // Cap at 20
     const mixedAssets = EnhancedAssetLoader.getMixedAssets(assetCount);
     
     // Add some themed assets based on phase

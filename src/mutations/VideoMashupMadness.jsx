@@ -13,8 +13,8 @@ const VideoMashupMadness = ({ assetLibrary, phase, intensity, assets }) => {
 
   // Get all available videos
   const getVideoAssets = useCallback(() => {
-    const videos = EnhancedAssetLoader.getDiverseAssets('videos', 15 + Math.floor(intensity * 20));
-    const images = EnhancedAssetLoader.getDiverseAssets('images', 10 + Math.floor(intensity * 15));
+    const videos = EnhancedAssetLoader.getDiverseAssets('videos', Math.min(10, 5 + Math.floor(intensity * 5))); // Cap at 10 videos
+    const images = EnhancedAssetLoader.getDiverseAssets('images', Math.min(8, 4 + Math.floor(intensity * 4))); // Cap at 8 images
     
     // Track which projects we're showing
     const projects = [...new Set([...videos, ...images].map(a => a.project))];

@@ -150,62 +150,42 @@ const GlobalPreloader = ({ assetLibrary, onComplete }) => {
   return (
     <div className="global-preloader" style={bgStyle}>
       <div className="preloader-content">
-        <div className="preloader-logo">
-          <div className="logo-text">CHAOS ENGINE</div>
-          <div className="logo-subtitle">THE ORPHANARIUM</div>
-        </div>
-        
-        <div className="loading-bar-container">
-          <div className="loading-bar">
-            <div 
-              className="loading-progress"
-              style={{ 
-                width: `${loadingProgress}%`,
-                background: `linear-gradient(90deg, 
-                  #FF006E ${loadingProgress < 20 ? '100%' : '0%'},
-                  #FB5607 ${loadingProgress < 40 ? '100%' : '0%'},
-                  #FFBE0B ${loadingProgress < 60 ? '100%' : '0%'},
-                  #8338EC ${loadingProgress < 80 ? '100%' : '0%'},
-                  #3A86FF 100%)`
-              }}
-            />
+        <div className="main-loading-group">
+          <img 
+            src="/assets-curated/essentials/blobtv/images/blobtv_logo.webp" 
+            alt="BlobTV" 
+            className="blobtv-logo"
+            style={{
+              width: '120px',
+              height: 'auto',
+              marginBottom: '20px'
+            }}
+          />
+          <div className="preloader-logo">
+            <div className="logo-text">CHAOS ENGINE</div>
+            <div className="logo-subtitle">THE ORPHANARIUM</div>
           </div>
-          <div className="loading-percentage">{loadingProgress}%</div>
-        </div>
-        
-        <div className="loading-stage">{loadingStage.toUpperCase()}</div>
-        
-        <div className="asset-stats">
-          <div className="stat-item">
-            <span className="stat-label">IMAGES</span>
-            <span className="stat-value">{loadedAssets.images}</span>
-          </div>
-          <div className="stat-item">
-            <span className="stat-label">AUDIO</span>
-            <span className="stat-value">{loadedAssets.audio}</span>
-          </div>
-          <div className="stat-item">
-            <span className="stat-label">FONTS</span>
-            <span className="stat-value">{loadedAssets.fonts}</span>
+          
+          <div className="loading-bar-container">
+            <div className="loading-bar">
+              <div 
+                className="loading-progress"
+                style={{ 
+                  width: `${loadingProgress}%`,
+                  background: `linear-gradient(90deg, 
+                    #FF006E ${loadingProgress < 20 ? '100%' : '0%'},
+                    #FB5607 ${loadingProgress < 40 ? '100%' : '0%'},
+                    #FFBE0B ${loadingProgress < 60 ? '100%' : '0%'},
+                    #8338EC ${loadingProgress < 80 ? '100%' : '0%'},
+                    #3A86FF 100%)`
+                }}
+              />
+            </div>
+            <div className="loading-percentage">{loadingProgress}%</div>
           </div>
         </div>
         
-        {errors.length > 0 && (
-          <div className="loading-errors">
-            <div className="error-title">⚠️ Some assets failed to load</div>
-            <div className="error-count">{errors.length} errors (continuing anyway)</div>
-          </div>
-        )}
-        
-        <div className="loading-tips">
-          <div className="tip">
-            {loadingProgress < 25 && "Gathering orphan fragments from abandoned projects..."}
-            {loadingProgress >= 25 && loadingProgress < 50 && "Reconstructing digital memories..."}
-            {loadingProgress >= 50 && loadingProgress < 75 && "Weaving chaos patterns..."}
-            {loadingProgress >= 75 && loadingProgress < 90 && "Stabilizing multiverse connections..."}
-            {loadingProgress >= 90 && "Preparing for maximum chaos..."}
-          </div>
-        </div>
+        {/* Bottom info section REMOVED - no stats, tips, or errors */}
         
         {/* Animated elements */}
         <div className="floating-assets">

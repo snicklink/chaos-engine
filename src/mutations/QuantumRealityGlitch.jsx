@@ -68,7 +68,7 @@ const QuantumRealityGlitch = ({ assetLibrary, phase, intensity, assets }) => {
     const layers = quantumDimensions.map((dimension, dimIndex) => {
       const layerAssets = assetList
         .sort(() => 0.5 - Math.random())
-        .slice(0, 15 + Math.floor(intensity * 20)) // MORE ASSETS PER DIMENSION!
+        .slice(0, Math.min(20, 10 + Math.floor(intensity * 10))) // Cap at 20 per dimension
         .map((asset, index) => ({
           ...asset,
           id: `quantum-${dimIndex}-${index}`,
@@ -100,7 +100,7 @@ const QuantumRealityGlitch = ({ assetLibrary, phase, intensity, assets }) => {
 
   // Create dimensional tears/portals - MORE OF THEM!
   const createDimensionTears = useCallback(() => {
-    const tearCount = 10 + Math.floor(intensity * 15); // More tears!
+    const tearCount = Math.min(15, 5 + Math.floor(intensity * 10)); // Cap at 15 tears
     const tears = [];
 
     for (let i = 0; i < tearCount; i++) {

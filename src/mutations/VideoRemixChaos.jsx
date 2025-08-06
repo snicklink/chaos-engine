@@ -9,7 +9,7 @@ const VideoRemixChaos = ({ phase, intensity }) => {
 
   useEffect(() => {
     // Get random videos from the chaos randomizer
-    const videos = chaosRandomizer.getRandomAssets('videos', 6 + Math.floor(intensity * 4));
+    const videos = chaosRandomizer.getRandomAssets('videos', Math.min(6, 3 + Math.floor(intensity * 3))); // Cap at 6 videos
     
     if (!videos || videos.length === 0) {
       console.warn('⚠️ No videos available for VideoRemixChaos');

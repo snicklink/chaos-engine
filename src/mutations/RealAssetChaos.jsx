@@ -50,7 +50,7 @@ const RealAssetChaos = ({ assetLibrary, phase, intensity }) => {
   }, [assetLibrary]);
   
   const generateChaosFromPreloaded = (assetSet) => {
-    const count = Math.floor(intensity * 25) + 10; // Reduced for performance
+    const count = Math.min(20, Math.floor(intensity * 15) + 8); // Cap at 20
     const assets = [];
     
     for (let i = 0; i < count; i++) {
@@ -80,7 +80,7 @@ const RealAssetChaos = ({ assetLibrary, phase, intensity }) => {
   
   const generateChaosFromLibrary = () => {
     // Fallback to library method (reduced count for performance)
-    const count = Math.floor(intensity * 15) + 5;
+    const count = Math.min(12, Math.floor(intensity * 10) + 4); // Cap at 12
     const assets = [];
     
     const guaranteedAssets = [

@@ -121,7 +121,7 @@ const AssetChaosDisplay = ({ assetLibrary, phase, intensity }) => {
     
     const loadImages = async () => {
       const randomAssets = [];
-      const count = Math.floor(intensity * 30) + 10;
+      const count = Math.min(25, Math.floor(intensity * 20) + 8); // Cap at 25 for performance
       const patterns = Object.keys(movementPatterns);
       
       // Mix assets from different pools

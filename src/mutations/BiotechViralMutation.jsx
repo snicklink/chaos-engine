@@ -10,8 +10,8 @@ const BiotechViralMutation = ({ assetLibrary, phase, intensity, assets }) => {
   const [evolutionStage, setEvolutionStage] = useState('infection');
   const [organicComplexity, setOrganicComplexity] = useState(1);
 
-  // Biological parameters
-  const MAX_ORGANISMS = 200 + Math.floor(intensity * 500);
+  // Biological parameters - OPTIMIZED
+  const MAX_ORGANISMS = Math.min(300, 100 + Math.floor(intensity * 200)); // Cap at 300 for performance
   const GROWTH_RATE = 0.01 + intensity * 0.05;
   const MUTATION_PROBABILITY = 0.1 + intensity * 0.4;
   const DIVISION_THRESHOLD = 50 + intensity * 100;

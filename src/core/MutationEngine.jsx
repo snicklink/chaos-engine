@@ -17,6 +17,7 @@ const MutationEngine = () => {
   const [assets, setAssets] = useState({});
   const [assetLibrary, setAssetLibrary] = useState(null);
   const [preloadComplete, setPreloadComplete] = useState(false);
+  const [showSoundPrompt, setShowSoundPrompt] = useState(false);
   
   const engineRef = useRef(null);
   const phaseController = useRef(null);
@@ -170,6 +171,7 @@ const MutationEngine = () => {
       try {
         await AudioManager.init();
         audioInitialized.current = true;
+        setShowSoundPrompt(false); // Hide the prompt after audio init
         // Update with current phase
         const currentIntensity = phaseController.current?.getIntensity() || 0;
         console.log('🎶 Setting initial phase:', phase, 'intensity:', currentIntensity);
@@ -179,6 +181,7 @@ const MutationEngine = () => {
       }
     } else {
       console.log('🔊 Audio already initialized');
+      setShowSoundPrompt(false);
     }
   };
 
@@ -213,6 +216,13 @@ const MutationEngine = () => {
 
   const handlePreloadComplete = () => {
     setPreloadComplete(true);
+    setShowSoundPrompt(true); // Show sound prompt after preload
+    
+    // Auto-hide sound prompt after 10 seconds
+    setTimeout(() => {
+      setShowSoundPrompt(false);
+    }, 10000);
+    
     // Start the first mutation
     triggerNewMutation();
     // Start phase controller
@@ -250,6 +260,44 @@ const MutationEngine = () => {
 
   return (
     <div className="mutation-engine" ref={engineRef} onClick={handleUserInteraction}>
+      {/* Sound prompt overlay */}
+      {showSoundPrompt && (
+        <div 
+          style={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            zIndex: 1000,
+            pointerEvents: 'none'
+          }}
+        >
+          <button
+            style={{
+              background: 'linear-gradient(180deg, #2D1B69 0%, #8B5CF6 100%)',
+              border: 'none',
+              borderRadius: '50px',
+              padding: '12px 24px',
+              color: 'white',
+              fontSize: '14px',
+              fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+              fontWeight: '500',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+              boxShadow: '0 4px 12px rgba(139, 92, 246, 0.3)',
+              pointerEvents: 'auto',
+              animation: 'fadeIn 0.5s ease-in-out'
+            }}
+            onClick={handleUserInteraction}
+          >
+            <span>Klicken für Sound</span>
+            <span style={{ fontSize: '16px' }}>🔊</span>
+          </button>
+        </div>
+      )}
+      
       {/* Ghost layer canvas - behind everything */}
       <canvas
         ref={ghostCanvasRef}
